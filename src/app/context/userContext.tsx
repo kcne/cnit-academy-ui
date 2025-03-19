@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
@@ -14,6 +14,7 @@ type User = {
 type UserContextType = {
   user: User;
   login: (email: string, password: string) => Promise<void>;
+  register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
   fetchUserInfo: () => Promise<void>;
 };
@@ -28,10 +29,8 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const response = await axios.post('http://localhost:3000/api/users/login', { email, password });
       const { token, user } = response.data;
 
-      // Save token to local storage
       localStorage.setItem('authToken', token);
 
-      // Update user state
       setUser(user);
     } catch (error) {
       console.error('Login failed:', error);
@@ -39,10 +38,16 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-
+  const register = async (name: string, email: string, password: string) => {
+    try {
+      await axios.post('http://localhost:3000/api/users/register', { name, email, password });
+    } catch (error) {
+      console.error('Registration failed:', error);
+      throw error;
+    }
+  };
 
   const logout = () => {
-    // Clear token and user state
     localStorage.removeItem('authToken');
     setUser(undefined);
   };
@@ -66,12 +71,11 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
-    // Automatically fetch user info on app load if a token exists
     fetchUserInfo();
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, login, logout, fetchUserInfo }}>
+    <UserContext.Provider value={{ user, login, register, logout, fetchUserInfo }}>
       {children}
     </UserContext.Provider>
   );
