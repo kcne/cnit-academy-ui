@@ -27,10 +27,10 @@ export default function ProfilePage() {
         <div
           className={`${card_box} flex flex-row justify-between items-center`}
         >
-          <div className="w-36 border-2 border-solid">
+          <div className="w-36 ">
             <Image src={"/img2.jpg"} width={150} height={150} alt="img2" />
           </div>
-          <div className="flex flex-col justify-evenly text-center w-full h-24 border-2 border-solid ">
+          <div className="flex flex-col justify-evenly text-center w-full h-24  ">
             <p className="text-red-500">❤ 0000</p>
 
             <p className="text-yellow-500">🟡 0000</p>
