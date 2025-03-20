@@ -35,7 +35,7 @@ export default function Header() {
           <a href="#" className="text-red-500">
             <i className="fa fa-heart"></i> <b>0000</b>
           </a>
-          <Link href={`/profile`}>Enes Korac ▼</Link>
+          <Link href={`/user/profile`}>Enes Korac ▼</Link>
         </div>
       </nav>
     </>
