@@ -1,11 +1,13 @@
-import Image from "next/image";
-
+import Link from "next/link";
 export default function Home() {
   return (
-    <>
-      <div className="h-96">
-        <h1>HOMEPAGE</h1>
-      </div>
-    </>
+    <div className="min-h-screen flex items-center justify-center">
+      <Link
+        href="/login"
+        className="bg-blue-500 text-white px-6 py-3 rounded-lg text-lg font-medium hover:bg-blue-600 transition-colors"
+      >
+        Login
+      </Link>
+    </div>
   );
 }
