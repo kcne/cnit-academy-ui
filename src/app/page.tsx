@@ -1,5 +1,6 @@
-import Link from "next/link";
-export default function Home() {
+import Link from 'next/link'
+
+export default function HomePage() {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <Link
@@ -9,5 +10,6 @@ export default function Home() {
         Login
       </Link>
     </div>
-  );
+  )
 }
+
