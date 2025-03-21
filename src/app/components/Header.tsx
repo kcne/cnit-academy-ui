@@ -30,10 +30,10 @@ export default function Header() {
             <i className="fa fa-book text-lg"></i>
           </a>
           <a href="#" className="text-yellow-500">
-            <i className="fa fa-diamond"></i> <b>0000</b>
+            🟡 <b>0000</b>
           </a>
           <a href="#" className="text-red-500">
-            <i className="fa fa-heart"></i> <b>0000</b>
+            ❤ <b>0000</b>
           </a>
           <Link href={`/user/profile`}>Enes Korac ▼</Link>
         </div>

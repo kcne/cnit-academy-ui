@@ -7,7 +7,7 @@ export default function UserNavigation() {
   const nav_link = `inline-flex rounded-full px-3 py-1.5 text-slate-500 hover:text-indigo-500 [&.active]:bg-indigo-100 [&.active]:text-indigo-600 `;
   return (
     <>
-      <div className="flex space-x-4">
+      <div className="flex space-x-4 space-y-2">
         <div
           className={`${nav_link} ${
             pathname === "/user/dashboard" ? "active" : ""

@@ -1,8 +1,18 @@
 import Image from "next/image";
 import { Heart } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+
 export default function ProfilePage() {
   const card_box = "bg-white p-4 rounded-lg shadow-lg";
   const card_title = "text-lg font-semibold";
+  const check_box = "flex items-center space-x-2 space-y-2";
+  const label_checkbox =
+    "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70";
   return (
     <>
       <div className="flex space-x-4 bg-white p-6 rounded-lg shadow-lg">
@@ -31,9 +41,8 @@ export default function ProfilePage() {
             <Image src={"/img2.jpg"} width={150} height={150} alt="img2" />
           </div>
           <div className="flex flex-col justify-evenly text-center w-full h-24  ">
-            <p className="text-red-500">❤ 0000</p>
-
             <p className="text-yellow-500">🟡 0000</p>
+            <p className="text-red-500">❤ 0000</p>
           </div>
         </div>
         {/* Skills Card */}
@@ -62,6 +71,39 @@ export default function ProfilePage() {
         <div className={card_box}>
           <h3 className={card_title}>Job Experience</h3>
         </div>
+        {/* Points Card */}
+        <Collapsible className={card_box}>
+          <CollapsibleTrigger>
+            <h3 className={card_title}>Fill up your profile and earn points</h3>
+            <div className="w-full bg-gray-200 rounded-full dark:bg-gray-700">
+              <div className="bg-blue-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full w-2/5">
+                {" "}
+                40%
+              </div>
+            </div>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className={check_box}>
+              <Checkbox id="item1" />
+              <label htmlFor="item1" className={label_checkbox}>
+                Add GitHub(+2 points)
+              </label>
+            </div>
+
+            <div className={check_box}>
+              <Checkbox id="item2" />
+              <label htmlFor="item2" className={label_checkbox}>
+                Add LinkedIn (+2 points)
+              </label>
+            </div>
+            <div className={check_box}>
+              <Checkbox id="item3" />
+              <label htmlFor="item3" className={label_checkbox}>
+                Add Project (+5 points)
+              </label>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </div>
     </>
   );
