@@ -9,12 +9,12 @@ export default function Layout({
   return (
     <>
       {/* Main Content */}
+      <Header />
       <div className="max-w-4xl mx-auto p-6">
-        <Header />
         <UserNavigation />
-        <Footer />
         {children}
       </div>
+      <Footer />
     </>
   );
 }
