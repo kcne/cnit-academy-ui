@@ -3,6 +3,8 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+
 type User = {
   name: string | null;
   email: string;
@@ -26,7 +28,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post('http://localhost:3000/api/users/login', { email, password });
+      const response = await axios.post(BASE_URL + '/api/login', { email, password });
       const { token, user } = response.data;
 
       localStorage.setItem('authToken', token);
@@ -40,7 +42,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (name: string, email: string, password: string) => {
     try {
-      await axios.post('http://localhost:3000/api/users/register', { name, email, password });
+      await axios.post(BASE_URL + '/api/register', { name, email, password });
     } catch (error) {
       console.error('Registration failed:', error);
       throw error;
@@ -57,7 +59,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const token = localStorage.getItem('authToken');
       if (!token) return;
 
-      const response = await axios.get('http://localhost:3000/api/users/me', {
+      const response = await axios.get(BASE_URL + '/api/users/me', {
         headers: {
           Authorization: `Bearer ${token}`,
         },
