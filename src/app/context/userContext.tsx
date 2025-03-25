@@ -2,6 +2,7 @@
 
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import axios from 'axios';
+import AWS from 'aws-sdk'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
 
@@ -16,7 +17,13 @@ type User = {
 type UserContextType = {
   user: User;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
+  register: (
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    pfp: File,
+  ) => Promise<void>;
   logout: () => void;
   fetchUserInfo: () => Promise<void>;
 };
@@ -40,9 +47,32 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (firstName: string, lastName: string, email: string, password: string, pfp: File) => {
     try {
-      await axios.post(BASE_URL + '/api/register', { name, email, password });
+      AWS.config.update({
+        accessKeyId: "YcWrG0tgsJnk9XW4rhZr",
+        secretAccessKey: "vE0Wl9c62weigGmH8PyJu4eSd0h4hL8kSnuKD6tk",
+        s3ForcePathStyle: true
+      });
+      const s3 = new AWS.S3({
+        endpoint: "http://localhost:9000/"
+      });
+
+      const user = await axios.post(BASE_URL + "/api/register", {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+      if (pfp) {
+        await s3
+          .putObject({
+            Bucket: "pfp",
+            Body: pfp,
+            Key: String(user.data.id) + "." + pfp.name.split(".").reverse()[0],
+          })
+          .promise();
+      }
     } catch (error) {
       console.error('Registration failed:', error);
       throw error;
