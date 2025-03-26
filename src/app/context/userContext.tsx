@@ -1,18 +1,23 @@
-"use client"
+"use client";
 
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import axios from 'axios';
-import AWS from 'aws-sdk'
+import React, { createContext, useState, useContext, useEffect } from "react";
+import axios from "axios";
+import AWS from "aws-sdk";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BUCKET_ACCESS_KEY = process.env.NEXT_PUBLIC_BUCKET_ACCESS_KEY;
+const BUCKET_SECRET_KEY = process.env.NEXT_PUBLIC_BUCKET_SECRET_KEY;
+const BUCKET_ENDPOINT = process.env.NEXT_PUBLIC_BUCKET_ENDPOINT;
 
-type User = {
-  name: string | null;
-  email: string;
-  id: number;
-  createdAt: Date;
-  updatedAt: Date;
-} | undefined;
+type User =
+  | {
+      name: string | null;
+      email: string;
+      id: number;
+      createdAt: Date;
+      updatedAt: Date;
+    }
+  | undefined;
 
 type UserContextType = {
   user: User;
@@ -26,36 +31,52 @@ type UserContextType = {
   ) => Promise<void>;
   logout: () => void;
   fetchUserInfo: () => Promise<void>;
+  verifyEmail: (code: number) => Promise<boolean>;
+  resendEmail: () => Promise<void>;
 };
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [user, setUser] = useState<User>(undefined);
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post(BASE_URL + '/api/login', { email, password });
+      const response = await axios.post(BASE_URL + "/api/login", {
+        email,
+        password,
+      });
       const { token, user } = response.data;
 
-      localStorage.setItem('authToken', token);
+      localStorage.setItem("authToken", token);
 
       setUser(user);
     } catch (error) {
-      console.error('Login failed:', error);
+      console.error("Login failed:", error);
       throw error;
     }
   };
 
-  const register = async (firstName: string, lastName: string, email: string, password: string, pfp: File) => {
+  const register = async (
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string,
+    pfp: File,
+  ) => {
     try {
+      console.log(BUCKET_ACCESS_KEY);
+      console.log(BUCKET_SECRET_KEY);
+      console.log(BUCKET_ENDPOINT);
       AWS.config.update({
-        accessKeyId: "YcWrG0tgsJnk9XW4rhZr",
-        secretAccessKey: "vE0Wl9c62weigGmH8PyJu4eSd0h4hL8kSnuKD6tk",
-        s3ForcePathStyle: true
+        accessKeyId: BUCKET_ACCESS_KEY,
+        secretAccessKey: BUCKET_SECRET_KEY,
+        s3ForcePathStyle: true,
       });
       const s3 = new AWS.S3({
-        endpoint: "http://localhost:9000/"
+        endpoint: BUCKET_ENDPOINT,
       });
 
       const user = await axios.post(BASE_URL + "/api/register", {
@@ -74,22 +95,22 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
           .promise();
       }
     } catch (error) {
-      console.error('Registration failed:', error);
+      console.error("Registration failed:", error);
       throw error;
     }
   };
 
   const logout = () => {
-    localStorage.removeItem('authToken');
+    localStorage.removeItem("authToken");
     setUser(undefined);
   };
 
   const fetchUserInfo = async () => {
     try {
-      const token = localStorage.getItem('authToken');
+      const token = localStorage.getItem("authToken");
       if (!token) return;
 
-      const response = await axios.get(BASE_URL + '/api/users/me', {
+      const response = await axios.get(BASE_URL + "/api/profile/me", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -97,9 +118,27 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       setUser(response.data);
     } catch (error) {
-      console.error('Failed to fetch user info:', error);
+      console.error("Failed to fetch user info:", error);
       logout();
     }
+  };
+
+  const verifyEmail = async (code: number) => {
+    try {
+      let result = await axios.post(BASE_URL + "/api/users/verify-email", {
+        email: user?.email,
+        code,
+      });
+      return result.data.message === "Successfully e-mail is verified";
+    } catch (error) {
+      return false;
+    }
+  };
+
+  const resendEmail = async () => {
+    await axios.post(BASE_URL + "/api/users/resend-email", {
+      email: user?.email,
+    });
   };
 
   useEffect(() => {
@@ -107,7 +146,17 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, login, register, logout, fetchUserInfo }}>
+    <UserContext.Provider
+      value={{
+        user,
+        login,
+        register,
+        logout,
+        fetchUserInfo,
+        verifyEmail,
+        resendEmail,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
@@ -116,7 +165,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({ children
 export const useUser = (): UserContextType => {
   const context = useContext(UserContext);
   if (!context) {
-    throw new Error('useUser must be used within a UserProvider');
+    throw new Error("useUser must be used within a UserProvider");
   }
   return context;
 };
