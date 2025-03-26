@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 type Props = {};
 
 export default function Page({}: Props) {
-  const { verifyEmail, resendEmail } = useUser();
+  const { user, verifyEmail, resendEmail } = useUser();
   const router = useRouter();
   const regex = /^\d{0,6}$/;
 
@@ -15,6 +15,9 @@ export default function Page({}: Props) {
   const [resend, setResend] = useState(false);
 
   useEffect(() => {
+    if (!user?.email) {
+      router.push("/register");
+    }
     if (!resend) {
       setTimeout(() => setResend(true), 1000 * 30);
     }
@@ -28,8 +31,8 @@ export default function Page({}: Props) {
           Check your email and enter the code to continue to login.
         </p>
         <input
-          className="w-28 tracking-wider bg-gray-100 px-2 py-1 mt-2 text-3xl"
-          placeholder="xxxxxx"
+          className="w-36 tracking-wider bg-gray-100 px-2 py-1 mt-2 text-3xl text-center"
+          placeholder="000000"
           value={code}
           onChange={(e) => {
             if (regex.test(e.target.value)) {
@@ -42,7 +45,7 @@ export default function Page({}: Props) {
             disabled={code.length !== 6}
             className="p-2 bg-blue-500 disabled:bg-gray-300 text-white font-bold rounded-lg h-10"
             onClick={() => {
-              verifyEmail(Number(code))
+              verifyEmail(code)
                 .then((res) => {
                   if (res) {
                     router.push("/login");

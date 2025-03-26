@@ -11,11 +11,10 @@ const BUCKET_ENDPOINT = process.env.NEXT_PUBLIC_BUCKET_ENDPOINT;
 
 type User =
   | {
-      name: string | null;
-      email: string;
       id: number;
-      createdAt: Date;
-      updatedAt: Date;
+      firstName: string;
+      lastName: string;
+      email: string;
     }
   | undefined;
 
@@ -31,7 +30,7 @@ type UserContextType = {
   ) => Promise<void>;
   logout: () => void;
   fetchUserInfo: () => Promise<void>;
-  verifyEmail: (code: number) => Promise<boolean>;
+  verifyEmail: (code: string) => Promise<boolean>;
   resendEmail: () => Promise<void>;
 };
 
@@ -94,6 +93,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
           })
           .promise();
       }
+      setUser({ ...user.data });
     } catch (error) {
       console.error("Registration failed:", error);
       throw error;
@@ -123,7 +123,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const verifyEmail = async (code: number) => {
+  const verifyEmail = async (code: string) => {
     try {
       let result = await axios.post(BASE_URL + "/api/users/verify-email", {
         email: user?.email,
