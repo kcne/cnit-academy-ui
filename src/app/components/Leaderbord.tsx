@@ -79,7 +79,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
   <div
     className="w-10 h-10 flex items-center justify-center rounded-full text-white font-bold"
     style={{
-      backgroundColor: colors[Math.floor(Math.random() * colors.length)], // Nasumična boja iz niza
+      backgroundColor: colors[Math.floor(Math.random() * colors.length)],
     }}
   >
     {user.initials}

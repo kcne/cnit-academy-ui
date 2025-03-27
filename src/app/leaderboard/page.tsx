@@ -1,4 +1,4 @@
-"use client"; // Obezbeđuje da je ovo klijentska komponenta
+"use client";
 
 import Leaderboard from "@/app/components/Leaderbord"
 
