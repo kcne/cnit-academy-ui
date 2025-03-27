@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import ProtectedWrapper from "./components/ProtectedWrapper";
 
 import "./globals.css";
 import { UserProvider } from "./context/userContext";
@@ -29,13 +30,10 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-
-
-         >
-          <UserProvider>
-          {children}
-          </UserProvider>
-
+      >
+        <UserProvider>
+          <ProtectedWrapper >{children}</ProtectedWrapper >
+        </UserProvider>
       </body>
     </html>
   );
