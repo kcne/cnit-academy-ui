@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useUser } from "@/app/context/userContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCustomToast } from "../hooks/useToast";
 
 const schema = z.object({
   firstName: z.string().min(3, "First name must be at least 3 characters."),
@@ -18,6 +19,7 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 const RegisterForm = () => {
+  const {showErrorToast, showSuccessToast } = useCustomToast();
   const [loading, setLoading] = useState(false);
   const router = useRouter();  
   const { register: registerUser } = useUser();
@@ -32,8 +34,10 @@ const RegisterForm = () => {
     try {
       await registerUser(data.firstName, data.lastName, data.email, data.password, data.pfp[0]);
       router.push("/register/email");  
+      showSuccessToast("Registration successful!");
     } catch (error) {
       console.error("Registration failed", error);
+      showErrorToast(error);
     } finally {
       setLoading(false);
     }
