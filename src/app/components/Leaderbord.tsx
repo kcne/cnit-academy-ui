@@ -22,7 +22,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
 
   const colors = [
     "#FF5733", "#33FF57", "#3357FF", "#FF33A5", "#FFD633", 
-    "#8E44AD", "#3498DB", "#2ECC71", "#E74C3C", "#F39C12",
+    "#8E44AD", "#3498DB", "#2ECC71", "#E74C3C", "#F39C12", 
     "#1ABC9C", "#9B59B6", "#34495E", "#16A085", "#F1C40F",
     "#E67E22", "#2C3E50", "#7F8C8D", "#D35400", "#C0392B"
   ];
