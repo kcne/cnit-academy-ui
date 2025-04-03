@@ -2,12 +2,13 @@
 
 import React from "react";
 
-type User = {
+export type User = {
   id: string;
   totalCoins: number;
-  name: string;
-  country: string;
-  initials: string;
+  firstName: string;
+  lastName:string;
+  updatedAt:string;
+  country?: string;
 };
 
 interface LeaderboardProps {
@@ -47,7 +48,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
                 index === 0 ? "bg-pink-500" : index === 1 ? "bg-gray-400" : "bg-blue-700"
               }`}
             >
-              {user.initials}
+              {user.firstName.at(0)} {user.lastName.at(0)}
             </div>
 
             <div
@@ -59,8 +60,8 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
             </div>
 
       
-            <span className="mt-4 font-bold ">{user.name}</span>
-            <span className="text-sm text-gray-500">{user.country}</span>
+            <span className="mt-4 font-bold ">{user.firstName}</span>
+            <span className="text-sm text-gray-500">{user?.country??"Serbia"}</span>
             <span className="font-semibold text-yellow-500">🪙 {user.totalCoins}</span>
           </div>
         ))}
@@ -82,10 +83,10 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
       backgroundColor: colors[Math.floor(Math.random() * colors.length)],
     }}
   >
-    {user.initials}
+    {user.firstName.at(0)} {user.lastName.at(0)}
   </div>
-  <span className="font-semibold">{user.name}</span>
-  <span className="text-sm text-gray-500">{user.country}</span>
+  <span className="font-semibold">{user.firstName}</span>
+  <span className="text-sm text-gray-500">{user?.country??"Serbia"}</span>
 </div>
 
 
