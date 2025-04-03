@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import { ReactNode } from "react";
 import { useRouter } from "next/navigation";
 
@@ -6,9 +6,10 @@ type ProtectedRouteProps = {
   children: ReactNode;
 };
 
-const ProtectedWrapper : React.FC<ProtectedRouteProps> = ({ children }) => {
+const ProtectedWrapper: React.FC<ProtectedRouteProps> = ({ children }) => {
   const router = useRouter();
-  const token = typeof window !== "undefined" ? localStorage.getItem("authToken") : null;
+  const token =
+    typeof window !== "undefined" ? localStorage.getItem("authToken") : null;
 
   if (!token) {
     router.push("/");
@@ -16,4 +17,4 @@ const ProtectedWrapper : React.FC<ProtectedRouteProps> = ({ children }) => {
   return children;
 };
 
-export default ProtectedWrapper ;
+export default ProtectedWrapper;
