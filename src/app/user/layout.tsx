@@ -1,7 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import UserNavigation from "../components/UserNavigation";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 export default function Layout({
   children,
 }: Readonly<{
