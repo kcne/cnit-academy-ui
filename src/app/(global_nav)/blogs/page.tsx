@@ -1,11 +1,15 @@
 import BlogCard from "@/app/components/Blog_card";
-
+import getBlogMetadata from "../../../lib/getBlogMetadata";
 export default function Blogs() {
+  const postMetadata = getBlogMetadata("blog_post");
+
   return (
     <>
-      <h1>Blogs</h1>
+      <h1>All Blogs</h1>
       <div>
-        <BlogCard />
+        {postMetadata.map((post, postIndex) => {
+          return <BlogCard key={postIndex} post={post} />;
+        })}
       </div>
     </>
   );

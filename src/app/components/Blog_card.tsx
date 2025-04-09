@@ -1,21 +1,25 @@
-export default function BlogCard() {
+import Link from "next/link";
+
+export default function BlogCard(props) {
+  const { post } = props;
   return (
     <>
-      <div className="flex flex-row border-2 border-solid">
-        <div className="border-2 border-solid w-10/12 h-44">
-          <p>Enes Korac</p>
-          <h3>PROGRAMING: NEXT JS</h3>
-          <div>#next</div>
-        </div>
-        <div className="flex flex-col justify-around ">
-          <div>26-03-2025</div>
+      <Link href={""}>
+        <div className="flex flex-row border-2 border-solid">
+          <h3>{post.title}</h3>
+          <p>{post.bio}</p>
           <div>
-            <p>
-              ❤ <b>0</b> 👁️ <b>23</b>
-            </p>
+            <div>
+              <h5>Prep Time</h5>
+              <p>{post.prep_time}</p>
+            </div>
+            <div>
+              <h5>Cook Time</h5>
+              <p>{post.cook_time}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 }
