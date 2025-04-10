@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { usePathname } from "next/navigation";
 import "./globals.css";
+import { Toaster } from "@/components/ui/toaster";
 import { UserProvider } from "./context/userContext";
 
 const geistSans = localFont({
@@ -35,7 +36,9 @@ export default function RootLayout({
         {/* Main Content */}
         <Header />
         <div className="max-w-4xl mx-auto p-6">
-          <UserProvider>{children}</UserProvider>
+          <UserProvider>{children}
+          <Toaster />
+          </UserProvider>
         </div>
         <Footer />
       </body>
