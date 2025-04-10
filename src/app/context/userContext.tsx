@@ -43,7 +43,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const login = async (email: string, password: string) => {
     try {
-      const response = await axios.post(BASE_URL + "/api/login", {
+      const response = await axios.post(BASE_URL + "/api/auth/login", {
         email,
         password,
       });
@@ -78,7 +78,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         endpoint: BUCKET_ENDPOINT,
       });
 
-      const user = await axios.post(BASE_URL + "/api/register", {
+      const user = await axios.post(BASE_URL + "/api/auth/register", {
         firstName,
         lastName,
         email,
@@ -125,18 +125,18 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const verifyEmail = async (code: string) => {
     try {
-      let result = await axios.post(BASE_URL + "/api/users/verify-email", {
+      let result = await axios.post(BASE_URL + "/api/auth/verify-email", {
         email: user?.email,
         code,
       });
-      return result.data.message === "Successfully e-mail is verified";
+      return true;
     } catch (error) {
       return false;
     }
   };
 
   const resendEmail = async () => {
-    await axios.post(BASE_URL + "/api/users/resend-email", {
+    await axios.post(BASE_URL + "/api/auth/resend-email", {
       email: user?.email,
     });
   };

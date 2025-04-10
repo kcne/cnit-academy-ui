@@ -91,7 +91,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
 
 
 
-      <span className="font-semibold text-yellow-500">🪙 {user.totalCoins}</span>
+      <span className="font-semibold text-yellow-500">🪙  {user.totalCoins}</span>
     </li>
   ))}
 </ul>
