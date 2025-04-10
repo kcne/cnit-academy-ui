@@ -16,28 +16,34 @@ function getPostContent(slug: string) {
 }
 
 export const generateStaticParams = async () => {
-  const posts = getBlogMetadata("blog_posts");
+  const posts = getBlogMetadata();
   return posts?.map((post) => ({ slug: post.slug }));
 };
 
-export async function generateMetadata({ params, searchParams }) {
+export async function generateMetadata({ params }) {
   const id = params?.slug ? " * " + params?.slug : "";
   return {
     title: `PatikaAcademy ${id.replaceAll("_", " ")}`,
   };
 }
 
-export default function Blogs(props) {
-  const slug = props.params.slug;
+const blogBox =
+  "flex flex-col border-2 border-solid m-1 p-4 rounded-2xl hover:shadow-lg transition-shadow";
+
+export default function Blogs({ params }) {
+  const slug = params.slug;
   const post = getPostContent(slug);
+  const { title, createdBy, createdAt } = post.data;
 
   return (
-    <>
-      <main>
-        <article>
-          <Markdown>{post.content}</Markdown>
-        </article>
-      </main>
-    </>
+    <main className={blogBox}>
+      <article>
+        <h1 className="text-2xl font-bold mb-2">{title}</h1>
+        <p className="text-sm text-gray-500 mb-4">
+          By {createdBy} • {new Date(createdAt).toLocaleDateString()}
+        </p>
+        <Markdown>{post.content}</Markdown>
+      </article>
+    </main>
   );
 }

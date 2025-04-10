@@ -21,8 +21,11 @@ export default function getBlogMetadata() {
 
     return {
       title: matterResult.data.title || "Untitled",
-      prep_time: matterResult.data.prep_time || 0,
-      cook_time: matterResult.data.cook_time || 0,
+      published: matterResult.data.published || false,
+      blogDescription: matterResult.data.blogDescription || "",
+      createdBy: matterResult.data.createdBy || "unknown",
+      createdAt: matterResult.data.createdAt || new Date().toISOString(),
+      updatedAt: matterResult.data.updatedAt || new Date().toISOString(),
       slug: filename.replace(".md", ""),
     };
   });
