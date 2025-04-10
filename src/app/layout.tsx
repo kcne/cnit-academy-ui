@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import "./globals.css";
 import { UserProvider } from "./context/userContext";
 
@@ -29,7 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <UserProvider>{children}</UserProvider>
+        {/* Main Content */}
+        <Header />
+        <div className="max-w-4xl mx-auto p-6">
+          <UserProvider>{children}</UserProvider>
+        </div>
+        <Footer />
       </body>
     </html>
   );
