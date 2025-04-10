@@ -17,7 +17,7 @@ type Inputs = z.infer<typeof schema>;
 
 const Form = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter(); // Koristi useRouter
+  const router = useRouter(); 
   const { login } = useUser();
   const {
     register,
