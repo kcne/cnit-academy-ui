@@ -1,11 +1,14 @@
 import Link from "next/link";
 
+const blogBox =
+  "flex flex-row border-2 border-solid m-1 p-4 rounded-2xl hover:shadow-lg transition-shadow";
+
 export default function BlogCard(props) {
   const { post } = props;
   return (
     <>
-      <Link href={""}>
-        <div className="flex flex-row border-2 border-solid">
+      <Link href={`/blogs/${post.slug}`}>
+        <div className={blogBox}>
           <h3>{post.title}</h3>
           <p>{post.bio}</p>
           <div>
