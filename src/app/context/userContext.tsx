@@ -26,7 +26,7 @@ type UserContextType = {
     lastName: string,
     email: string,
     password: string,
-    pfp: File,
+    pfp: File
   ) => Promise<void>;
   logout: () => void;
   fetchUserInfo: () => Promise<void>;
@@ -63,7 +63,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     lastName: string,
     email: string,
     password: string,
-    pfp: File,
+    pfp: File
   ) => {
     try {
       console.log(BUCKET_ACCESS_KEY);
