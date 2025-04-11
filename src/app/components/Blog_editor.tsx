@@ -11,7 +11,7 @@ export default function BlogPage() {
   const [isEditing, setIsEditing] = useState(false);
 
   return (
-    <div className="container mx-auto px-4 py-2">
+    <div className="container mx-auto px-4 py-2 ">
       <div className="mb-4">
         <button
           onClick={() => setIsEditing(!isEditing)}
