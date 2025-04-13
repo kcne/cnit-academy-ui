@@ -18,7 +18,7 @@ export default function Courses(){
     
     useEffect(()=>{
         axios.get("http://localhost:3000/api/course/1").then((podaci:any)=>setData(podaci.data));
-        }, []);
+        }, []   );
     
     console.log(data)
     
@@ -60,7 +60,7 @@ export default function Courses(){
                             <div className="pt-5">
                                 <div className="flex justify-between">
                                     <div className="">
-                                        <h1 className="">lecture name</h1>
+                                    {data.lecture.map((lecture:any) => (<p>{lecture.title}</p>))}
                                     </div>
                                     <Button variant="outline" className="border-blue-600 border-2 rounded-lg text-blue-600" >Go to lecture</Button>
                                 </div>
