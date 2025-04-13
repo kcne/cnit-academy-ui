@@ -22,8 +22,8 @@ export default function Header() {
           <Link href="/blogs" className="hover:text-gray-500">
             Blogs
           </Link>
-          <Link href="/projects" className="hover:text-gray-500">
-            Projects
+          <Link href="/aboutUs" className="hover:text-gray-500">
+            About us
           </Link>
         </div>
         <div className="flex items-center space-x-4">
