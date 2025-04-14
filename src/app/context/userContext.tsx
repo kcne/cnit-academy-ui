@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useState, useContext, useEffect } from "react";
+import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
 import axios from "axios";
 import AWS from "aws-sdk";
 
@@ -9,7 +9,7 @@ const BUCKET_ACCESS_KEY = process.env.NEXT_PUBLIC_BUCKET_ACCESS_KEY;
 const BUCKET_SECRET_KEY = process.env.NEXT_PUBLIC_BUCKET_SECRET_KEY;
 const BUCKET_ENDPOINT = process.env.NEXT_PUBLIC_BUCKET_ENDPOINT;
 
-type User =
+export type User =
   | {
       id: number;
       firstName: string;
@@ -20,6 +20,7 @@ type User =
 
 type UserContextType = {
   user: User;
+  loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   register: (
     firstName: string,
@@ -36,25 +37,28 @@ type UserContextType = {
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
-export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
+export const UserProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [user, setUser] = useState<User>(undefined);
+  const [loading, setLoading] = useState(true);
 
   const login = async (email: string, password: string) => {
     try {
+      setLoading(true);
       const response = await axios.post(BASE_URL + "/api/auth/login", {
         email,
         password,
       });
-      const { token, user } = response.data;
+      const { token } = response.data;
 
       localStorage.setItem("authToken", token);
-
-      setUser(user);
+      await fetchUserInfo();
     } catch (error) {
       console.error("Login failed:", error);
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -66,6 +70,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     pfp: File
   ) => {
     try {
+      setLoading(true);
       console.log(BUCKET_ACCESS_KEY);
       console.log(BUCKET_SECRET_KEY);
       console.log(BUCKET_ENDPOINT);
@@ -93,10 +98,11 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
           })
           .promise();
       }
-      setUser({ ...user.data });
     } catch (error) {
       console.error("Registration failed:", error);
       throw error;
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -107,8 +113,12 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const fetchUserInfo = async () => {
     try {
+      setLoading(true);
       const token = localStorage.getItem("authToken");
-      if (!token) return;
+      if (!token) {
+        setUser(undefined);
+        return;
+      }
 
       const response = await axios.get(BASE_URL + "/api/profile/me", {
         headers: {
@@ -120,11 +130,14 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     } catch (error) {
       console.error("Failed to fetch user info:", error);
       logout();
+    } finally {
+      setLoading(false);
     }
   };
 
   const verifyEmail = async (code: string) => {
     try {
+      setLoading(true);
       await axios.post(BASE_URL + "/api/auth/verify-email", {
         email: user?.email,
         code,
@@ -133,13 +146,20 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     } catch (err) {
       console.log(err);
       return false;
+    } finally {
+      setLoading(false);
     }
   };
 
   const resendEmail = async () => {
-    await axios.post(BASE_URL + "/api/auth/resend-email", {
-      email: user?.email,
-    });
+    try {
+      setLoading(true);
+      await axios.post(BASE_URL + "/api/auth/resend-email", {
+        email: user?.email,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -150,6 +170,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     <UserContext.Provider
       value={{
         user,
+        loading,
         login,
         register,
         logout,

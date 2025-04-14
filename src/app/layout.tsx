@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { UserProvider } from "./context/userContext";
 import ResponsiveNav from "./components/Navbar";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
 
 export const metadata: Metadata = {
@@ -20,18 +21,10 @@ export default function RootLayout({
       <body
         className={`antialiased w-screen`}
       >
-      <ResponsiveNav
-        logo={<span className="text-xl font-bold">CNit Academy</span>}
-        rightElements={
-          <div className="flex items-center space-x-2">
-            <Button variant="outline" size="sm">
-              Log in
-            </Button>
-            <Button size="sm">Sign up</Button>
-          </div>
-        }
-      />
-          <UserProvider>{children}</UserProvider>
+      <UserProvider>
+      <ResponsiveNav/>
+          {children}
+      </UserProvider>
       </body>
     </html>
   );
