@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { Heart } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Collapsible,

@@ -3,9 +3,8 @@ import { useUser } from "@/app/context/userContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-type Props = {};
 
-export default function Page({}: Props) {
+export default function Page() {
   const { user, verifyEmail, resendEmail } = useUser();
   const router = useRouter();
   const regex = /^\d{0,6}$/;

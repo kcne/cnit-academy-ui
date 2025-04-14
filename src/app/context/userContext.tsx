@@ -130,7 +130,8 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         code,
       });
       return true;
-    } catch (error) {
+    } catch (err) {
+      console.log(err);
       return false;
     }
   };

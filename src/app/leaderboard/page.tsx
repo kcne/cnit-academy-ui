@@ -1,13 +1,12 @@
 "use client";
 
-import Leaderboard, { User } from "@/app/components/Leaderbord"
+import Leaderboard from "@/app/components/Leaderbord"
 import { getLeaderboardData } from "@/lib/getLeaderboardData";
 import { useEffect, useState } from "react";
 
 export default function LeaderboardPage() {
 
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getData() {
@@ -15,7 +14,6 @@ export default function LeaderboardPage() {
       if (response?.leaderboard){
         setData(response?.leaderboard);
       }
-      setLoading(false);
     }
 
     getData();
