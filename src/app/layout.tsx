@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import "./globals.css";
 import { UserProvider } from "./context/userContext";
+import ResponsiveNav from "./components/Navbar";
+import { Button } from "@/components/ui/button";
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,13 +18,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased`}
+        className={`antialiased w-screen`}
       >
-        <Header />
-        <div className="max-w-4xl mx-auto p-6">
+      <ResponsiveNav
+        logo={<span className="text-xl font-bold">CNit Academy</span>}
+        rightElements={
+          <div className="flex items-center space-x-2">
+            <Button variant="outline" size="sm">
+              Log in
+            </Button>
+            <Button size="sm">Sign up</Button>
+          </div>
+        }
+      />
           <UserProvider>{children}</UserProvider>
-        </div>
-        <Footer />
       </body>
     </html>
   );
