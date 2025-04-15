@@ -22,17 +22,16 @@ export default function Blogs() {
 
   return (
     <>
-      <div className="flex flex-row justify-between">
-        <h1 className="text-2xl font-bold text-blue-500 hover:underline">
+      <div className="flex flex-row justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-primary hover:underline">
           Blogs
         </h1>
 
         <Dialog>
-          <DialogTrigger>
-            {" "}
-            <h1 className="text-2xl font-bold mb-6 text-white bg-green-500 rounded-xl p-1 hover:bg-green-400 w-44">
+          <DialogTrigger asChild>
+            <button className="text-base font-semibold text-background bg-primary rounded-2xl px-4 py-2 hover:bg-primary/90 w-44">
               Blog Editor
-            </h1>
+            </button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>

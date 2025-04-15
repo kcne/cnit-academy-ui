@@ -41,21 +41,21 @@ export default function Blogs({ params }) {
     <>
       <div className="flex flex-row items-baseline mb-3">
         <Link href="/blogs">
-          <h1 className="text-2xl font-bold text-blue-500 hover:underline">
+          <h1 className="text-2xl font-bold text-primary hover:underline">
             Blogs
           </h1>
         </Link>
         <span className="mx-2 text-2xl">⮚</span>
         <Link href="#">
-          <h1 className="text-2xl font-bold text-blue-500 hover:underline">
+          <h1 className="text-2xl font-bold text-primary hover:underline">
             {title}
           </h1>
         </Link>
       </div>
       <main className={blogBox}>
         <article>
-          <h1 className="text-2xl font-bold mb-2">{title}</h1>
-          <p className="text-sm text-gray-500 mb-4">
+          <h2 className="text-xl font-bold tracking-tighter mb-2">{title}</h2>
+          <p className="text-sm text-muted-foreground mb-4">
             By {createdBy} • {new Date(createdAt).toLocaleDateString()}
           </p>
           <Markdown>{post.content}</Markdown>
