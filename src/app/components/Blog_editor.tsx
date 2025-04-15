@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 
 export default function BlogPage() {
   const [content, setContent] = useState<string>(
-    "# Start writing your blog post here\n\nThis is a simple markdown editor. You can:\n- Write in **bold**\n- Use *italics*\n- Create lists\n- And much more!"
+    "\nThis is a simple markdown editor. You can:\n- Write in **bold**\n- Use *italics*\n- Create lists\n- And much more!"
   );
   const [isEditing, setIsEditing] = useState(false);
 

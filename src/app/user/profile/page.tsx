@@ -6,6 +6,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function ProfilePage() {
   const card_box = "bg-white p-4 rounded-lg shadow-lg";
@@ -16,13 +17,10 @@ export default function ProfilePage() {
   return (
     <>
       <div className="flex space-x-4 bg-white p-6 rounded-lg shadow-lg">
-        <Image
-          src="/img1.png"
-          width={100}
-          height={100}
-          alt="Profile"
-          className="rounded-full"
-        />
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
         <div className="flex-1">
           <h2 className="text-2xl font-bold">Enes Korac</h2>
           <p className="text-gray-600">33 - Serbia</p>

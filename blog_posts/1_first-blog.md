@@ -7,27 +7,29 @@ createdAt: "2025-04-01T10:00:00Z"
 updatedAt: "2025-04-01T10:00:00Z"
 ---
 
-JavaScript is one of the most popular programming languages in the world. It is used to make web pages interactive and dynamic.
+# Introduction
 
-In this article, we’ll cover variables, functions, and basic data types in JavaScript.
+JavaScript is one of the core technologies of the web, alongside HTML and CSS. It allows you to bring your websites to life with interactivity and dynamic content.
 
-What is JavaScript?
-JavaScript is the programming language of the web.
+# What is JavaScript?
 
-It can update and change both HTML and CSS.
+JavaScript is a scripting language used to create and control dynamic website content. It runs in the browser, allowing developers to:
 
-It can calculate, manipulate and validate data.
+- React to user interactions
+- Modify the DOM (Document Object Model)
+- Send and receive data from servers
+- Build complex web applications
 
-Why Study JavaScript?
-JavaScript is one of the 3 languages all web developers must learn:
+# Including JavaScript in HTML
 
-1.  HTML to define the content of web pages
+There are two main ways to add JavaScript to your webpage:
 
-2.  CSS to specify the layout of web pages
+```html
+<!-- Inline -->
+<script>
+  alert("Hello, world!");
+</script>
 
-3.  JavaScript to program the behavior of web pages
-
-JavaScript Can Change HTML Content
-One of many JavaScript HTML methods is getElementById().
-
-The example below "finds" an HTML element (with id="demo"), and changes the element content (innerHTML) to "Hello
+<!-- External file -->
+<script src="script.js"></script>
+```

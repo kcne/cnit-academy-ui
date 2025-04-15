@@ -5,6 +5,8 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 
+import Link from "next/link";
+
 function getPostContent(slug: string) {
   const folder = path.join(process.cwd(), "blog_posts"); // cilja blog_posts folder
   const file = path.join(folder, `${slug}.md`);
@@ -36,14 +38,29 @@ export default function Blogs({ params }) {
   const { title, createdBy, createdAt } = post.data;
 
   return (
-    <main className={blogBox}>
-      <article>
-        <h1 className="text-2xl font-bold mb-2">{title}</h1>
-        <p className="text-sm text-gray-500 mb-4">
-          By {createdBy} • {new Date(createdAt).toLocaleDateString()}
-        </p>
-        <Markdown>{post.content}</Markdown>
-      </article>
-    </main>
+    <>
+      <div className="flex flex-row items-baseline mb-3">
+        <Link href="/blogs">
+          <h1 className="text-2xl font-bold text-blue-500 hover:underline">
+            Blogs
+          </h1>
+        </Link>
+        <span className="mx-2 text-2xl">⮚</span>
+        <Link href="#">
+          <h1 className="text-2xl font-bold text-blue-500 hover:underline">
+            {title}
+          </h1>
+        </Link>
+      </div>
+      <main className={blogBox}>
+        <article>
+          <h1 className="text-2xl font-bold mb-2">{title}</h1>
+          <p className="text-sm text-gray-500 mb-4">
+            By {createdBy} • {new Date(createdAt).toLocaleDateString()}
+          </p>
+          <Markdown>{post.content}</Markdown>
+        </article>
+      </main>
+    </>
   );
 }

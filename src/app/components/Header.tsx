@@ -6,7 +6,9 @@ export default function Header() {
       {/* Navbar */}
       <nav className="border-b border-gray-300 bg-white p-4 flex justify-between items-center">
         <Link href="/user/dashboard" className="hover:text-gray-500">
-          <div className="text-blue-600 text-lg font-bold">PatikaAcademy</div>
+          <div className="text-blue-600 text-lg font-bold mr-3">
+            PatikaAcademy
+          </div>
         </Link>
         <div className="space-x-4">
           <Link href="/user/dashboard" className="hover:text-gray-500">
