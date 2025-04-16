@@ -31,7 +31,7 @@ const RegisterForm = () => {
     setLoading(true);
     try {
       await registerUser(data.firstName, data.lastName, data.email, data.password, data.pfp[0]);
-      router.push("/register/email");  
+      router.push("/verify/" + encodeURIComponent(data.email));  
     } catch (error) {
       console.error("Registration failed", error);
     } finally {

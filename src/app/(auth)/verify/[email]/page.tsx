@@ -1,26 +1,52 @@
 "use client";
-import { useUser } from "@/app/providers/userContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import { api } from "@/api/api";
 
+interface PageProps {
+  params: {
+    email: string;
+  };
+}
 
-export default function Page() {
-  const { user, verifyEmail, resendEmail } = useUser();
+export default function Page({ params }: PageProps) {
   const router = useRouter();
   const regex = /^\d{0,6}$/;
+  const email = decodeURIComponent(params.email);
 
   const [code, setCode] = useState("");
   const [error, setError] = useState("");
   const [resend, setResend] = useState(false);
 
   useEffect(() => {
-    if (!user?.email) {
-      router.push("/register");
-    }
     if (!resend) {
       setTimeout(() => setResend(true), 1000 * 30);
     }
   }, [resend]);
+
+  const verifyEmail = async (code: string) => {
+    try {
+      const response = await api.post("/api/auth/verify-email", {
+        email,
+        code,
+      });
+      return response.data.success;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  };
+
+  const resendVerification = async () => {
+    try {
+      await api.post("/api/auth/resend-email", {
+        email,
+      });
+    } catch (err) {
+      console.error(err);
+      throw new Error("Failed to resend verification email");
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -45,12 +71,8 @@ export default function Page() {
             className="p-2 bg-blue-500 disabled:bg-gray-300 text-white font-bold rounded-lg h-10"
             onClick={() => {
               verifyEmail(code)
-                .then((res) => {
-                  if (res) {
+                .then(() => {
                     router.push("/login");
-                  } else {
-                    setError("Invalid code, please try again");
-                  }
                 })
                 .catch((rej) => setError(rej.message));
             }}
@@ -64,7 +86,7 @@ export default function Page() {
               onClick={() => {
                 setResend(false);
                 setCode("");
-                resendEmail().catch((rej) => setError(rej.message));
+                resendVerification().catch((rej) => setError(rej.message));
               }}
             >
               RESEND
@@ -76,4 +98,4 @@ export default function Page() {
       </div>
     </div>
   );
-}
+} 
