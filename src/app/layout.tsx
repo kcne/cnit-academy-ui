@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { UserProvider } from "./context/userContext";
 import ResponsiveNav from "./components/Navbar";
-
+import { Button, buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "CNit Academy",
@@ -16,13 +18,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`antialiased w-screen`}
-      >
-      <UserProvider>
-      <ResponsiveNav/>
-          {children}
-      </UserProvider>
+      <body className={`antialiased w-screen`}>
+        <Providers>
+          <UserProvider>
+            <ResponsiveNav />
+            {children}
+          </UserProvider>
+        </Providers>
       </body>
     </html>
   );
