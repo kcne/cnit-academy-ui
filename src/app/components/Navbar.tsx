@@ -7,8 +7,8 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { ProfileDropdown } from "./ProfileDropdown"
-import { useUser } from "../context/userContext"
-import type { User } from "../context/userContext"
+import { useUser } from "../providers/userContext"
+import type { User } from "../providers/userContext"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const Navbar = () => {
