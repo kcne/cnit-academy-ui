@@ -1,26 +1,24 @@
-import { useMutation } from 'react-query';
-import { createBlog } from '../queries/blog';
-import { useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
+import { createBlog } from '../queries/blog';
 import { BlogPost } from '../types/blog';
 
-const useCreateNewBlog = () => {
+const useCreateNewBlog = (userId: string) => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  const { mutate } = useMutation(
-    async (data: Partial<BlogPost>) => {
-      return createBlog(data);
-    },
+  return useMutation(
+    (data: Partial<BlogPost>) => createBlog(data),
     {
       onSuccess: () => {
+        queryClient.invalidateQueries({ queryKey: ['userBlogs', userId] });
         router.push('/dashboard/blogs');
-        queryClient.invalidateQueries({ queryKey: ['userBlogs'] });
+      },
+      onError: (error) => {
+        console.error("Failed to create blog:", error);
       },
     }
   );
-
-  return { mutate };
 };
 
 export default useCreateNewBlog;
