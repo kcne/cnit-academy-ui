@@ -1,6 +1,11 @@
 import { api } from "../api"
 import { BlogPost, BlogResponse } from "../types/blog"
 
+export const createBlog = async (data: Partial<BlogPost>): Promise<BlogPost | null> => {
+  const response = await api.post('/api/blog', data);
+  return response.data;
+}
+
 export const getUserBlogs = async (userId: number | undefined): Promise<BlogResponse | null> => {
   if (!userId) return null
   const response = await api.get(`/api/blog/user/${userId}`)
