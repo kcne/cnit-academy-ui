@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button"
 import { useState, useEffect } from "react";
 import axios from "axios"
 import { Clock, Coins, UsersRound } from "lucide-react";
-import { BASE_URL } from "../../context/userContext";
 import Link from "next/link";
+import { BASE_URL } from "@/app/providers/userContext";
 
 
 export default function Courses({ params: { id } }: any){
@@ -66,12 +66,12 @@ export default function Courses({ params: { id } }: any){
                                     <Button variant="outline" className="border-blue-600 border-2 rounded-lg text-blue-600"><Link href={"/lecture/"+ lecture.id}>Go to lecture</Link></Button>
                                 </div>
                                 <div className="w-full my-5"> 
-                                    <h1 className={data?.started ? data?.finished ? 
+                                    <h1 className={lecture?.started ? lecture?.finished ? 
                                         "bg-orange-400 rounded-lg text-center" : 
                                         "bg-orange-300 rounded-lg text-center" : 
                                         "bg-orange-200 rounded-lg text-center"}>
                                         
-                                        {data?.started ? data?.finished ? "Finished!" : "Unfinished" : "Haven't started" }
+                                        {lecture?.started ? lecture?.finished ? "Finished" : "Unfinished" : "Haven't started" }
                                     </h1>
                                 </div>
                             </div>))}

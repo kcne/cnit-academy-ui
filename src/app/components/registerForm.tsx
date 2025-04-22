@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { z } from "zod";
 import { useRouter } from "next/navigation"; 
-import { useUser } from "@/app/context/userContext";
+import { useUser } from "@/app/providers/userContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -31,7 +31,7 @@ const RegisterForm = () => {
     setLoading(true);
     try {
       await registerUser(data.firstName, data.lastName, data.email, data.password, data.pfp[0]);
-      router.push("/register/email");  
+      router.push("/verify/" + encodeURIComponent(data.email));  
     } catch (error) {
       console.error("Registration failed", error);
     } finally {
