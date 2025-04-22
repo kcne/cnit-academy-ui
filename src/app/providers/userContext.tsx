@@ -4,7 +4,7 @@ import React, { createContext, useState, useContext, useEffect, ReactNode } from
 import axios from "axios";
 import AWS from "aws-sdk";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 const BUCKET_ACCESS_KEY = process.env.NEXT_PUBLIC_BUCKET_ACCESS_KEY;
 const BUCKET_SECRET_KEY = process.env.NEXT_PUBLIC_BUCKET_SECRET_KEY;
 const BUCKET_ENDPOINT = process.env.NEXT_PUBLIC_BUCKET_ENDPOINT;
