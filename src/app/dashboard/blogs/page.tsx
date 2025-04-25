@@ -1,9 +1,9 @@
 "use client"
 import { useUserBlogs } from "@/api/hooks/useUserBlogs";
-import { blogColumns } from "@/app/components/blog-table/blog-columns";
-import { DataTable } from "@/app/components/shared/data-table";
+import BlogTable from "@/app/components/blog-table/blog-columns";
 import { useUser } from "@/app/providers/userContext";
 import { Skeleton } from "@/components/ui/skeleton";
+
 
 export default function DashboardPage() {
     const { user } = useUser();
@@ -37,12 +37,7 @@ export default function DashboardPage() {
     return (
         <div className="space-y-4">
             <h1 className="text-3xl font-bold">My Blogs</h1>
-            <DataTable
-                columns={blogColumns}
-                data={data.data}
-                searchFilter
-                searchPlaceholder="Search blogs..."
-            />
+            <BlogTable data = {data.data} />
         </div>
     );
 }
