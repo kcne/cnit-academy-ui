@@ -3,9 +3,11 @@
 import { useState } from "react";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
-import { useUser } from "@/app/providers/userContext";
+import { BASE_URL, useUser } from "@/app/providers/userContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
 
 const schema = z.object({
   firstName: z.string().min(3, "First name must be at least 3 characters."),
@@ -46,6 +48,15 @@ const RegisterForm = () => {
       setLoading(false);
     }
   };
+
+  const googleLogin = useGoogleLogin({
+    flow: "auth-code",
+    onSuccess: async ({ code }) => {
+      await axios.post(BASE_URL + "/api/auth/google", { code });
+      setLoading(false);
+      router.push("/");
+    },
+  });
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -162,6 +173,23 @@ const RegisterForm = () => {
             {loading ? "Loading..." : "Register"}
           </button>
         </form>
+        <div className="py-4">
+          <button
+            className="flex justify-between items-center h-10 w-full border rounded-md p-2"
+            onClick={() => {
+              setLoading(true);
+              googleLogin();
+            }}
+          >
+            <img
+              src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw"
+              alt="G"
+              className="h-5/6"
+            />
+            <span>Register using google</span>
+            <span className="aspect-square h-full"></span>
+          </button>
+        </div>
       </div>
     </div>
   );
