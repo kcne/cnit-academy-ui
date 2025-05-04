@@ -11,6 +11,7 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useCustomToast } from "../hooks/useToast";
 
 const schema = z.object({
   email: z.string().email(),
@@ -22,6 +23,7 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 const Form = () => {
+  const { showErrorToast, showSuccessToast } = useCustomToast();
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter(); // Koristi useRouter
   const { login } = useUser();
@@ -52,8 +54,10 @@ const Form = () => {
     try {
       await login(email, password);
       router.push("/");
+      showSuccessToast("Login successful!");
     } catch (error) {
       console.error("Login failed", error);
+      showErrorToast(error);
     } finally {
       setLoading(false);
     }
