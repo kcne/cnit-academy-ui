@@ -39,7 +39,7 @@ const Form = () => {
       const { token } = (
         await axios.post(BASE_URL + "/api/auth/google", { code })
       ).data;
-      localStorage.setItem("token", token);
+      localStorage.setItem("authToken", token);
       setLoading(false);
       router.push("/");
     },
