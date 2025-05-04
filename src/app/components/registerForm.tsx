@@ -52,7 +52,10 @@ const RegisterForm = () => {
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     onSuccess: async ({ code }) => {
-      await axios.post(BASE_URL + "/api/auth/google", { code });
+      const { token } = (
+        await axios.post(BASE_URL + "/api/auth/google", { code })
+      ).data;
+      localStorage.setItem("token", token);
       setLoading(false);
       router.push("/");
     },
