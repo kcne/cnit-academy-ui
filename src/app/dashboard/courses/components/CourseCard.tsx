@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatDistanceToNow } from "date-fns";
+import { useTranslation } from "react-i18next";
 
 export interface Course {
   id: number;
@@ -34,6 +35,7 @@ export const CourseCard: FC<CourseCardProps> = ({
   onClick,
   className = "",
 }) => {
+  const { t } = useTranslation();
   const {
     id,
     title,
@@ -61,9 +63,10 @@ export const CourseCard: FC<CourseCardProps> = ({
             {coins}
           </Badge>
         </div>
-        <p>Instructor: Emin Kocan (izmeniti)</p> {/*Izmeniti ovo*/}
+        <p>{t("coursesDashboard.instructor")}: Emin Kocan (izmeniti)</p>{" "}
+        {/*Izmeniti ovo*/}
         <CardDescription className="text-xs text-muted-foreground">
-          Created {timeAgo}
+          {t("coursesDashboard.created")} {timeAgo}
         </CardDescription>
       </CardHeader>
 

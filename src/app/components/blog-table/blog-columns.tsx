@@ -1,7 +1,10 @@
-import { ColumnDef } from "@tanstack/react-table"
-import { BlogPost } from "@/api/types/blog"
-import { Button } from "@/components/ui/button"
-import { ArrowUpDown, Pencil, Trash2, Eye, EyeOff } from "lucide-react"
+import { ColumnDef } from "@tanstack/react-table";
+import { BlogPost } from "@/api/types/blog";
+import { Button } from "@/components/ui/button";
+import { ArrowUpDown, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import { useTranslation } from "react-i18next";
+
+const { t } = useTranslation();
 
 export const blogColumns: ColumnDef<BlogPost>[] = [
   {
@@ -16,10 +19,10 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Title
+          {t("blogColumns.title")}
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -34,13 +37,15 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Status
+          {t("blogColumns.status")}
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      return row.original.published ? "Published" : "Draft"
+      return row.original.published
+        ? t("blogColumns.published")
+        : t("blogColumns.draft");
     },
   },
   {
@@ -51,19 +56,19 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Created At
+          {t("blogColumns.createdAt")}
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      return new Date(row.original.createdAt).toLocaleDateString()
+      return new Date(row.original.createdAt).toLocaleDateString();
     },
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const blog = row.original
+      const blog = row.original;
 
       return (
         <div className="flex items-center gap-2">
@@ -83,7 +88,7 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
             </Button>
           )}
         </div>
-      )
+      );
     },
   },
-]
+];

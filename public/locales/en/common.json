@@ -63,5 +63,109 @@
         "datascience": "Data Science"
       }
     }
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "loading": "Loading",
+    "error": "Error loading leaderboard",
+    "progress": "Progress Score",
+    "community": "Community Score",
+    "thisWeek": "This week",
+    "allTimes": "All times",
+    "attednees": "Attendees"
+  },
+  "navbar": {
+    "home": "Home",
+    "courses": "Courses",
+    "blog": "Blog",
+    "about": "About",
+    "signIn": "Sign In",
+    "register": "Register"
+  },
+  "sidebar": {
+    "home": "Home",
+    "myBlogs": "My Blogs",
+    "calendar": "Calendar",
+    "search": "Search",
+    "settings": "Settings"
+  },
+  "coursesDashboard": {
+    "available": "Available Courses",
+    "noavailable": "No courses available.",
+    "instructor": "Instructor",
+    "created": "Created"
+  },
+  "blogNew": {
+    "createNew": "Create New Blog",
+    "fill": "Fill in the details below to create a new blog post.",
+    "title": "Title",
+    "titleText": "This is your blog title. Make it catchy!",
+    "slug": "Slug",
+    "slugText": "This will be used in the URL. Use hyphens instead of spaces.",
+    "description": "Description",
+    "descriptionText": "A shor description of your blog post.",
+    "content": "Content",
+    "contentText": "Write your blog content using markdown.",
+    "publish": "Publish",
+    "publishText": "Make your blog visible to the public",
+    "save": "Save Blog",
+    "saving": "Saving..."
+  },
+  "blogs": {
+    "errorLoading": "Error loading blogs:",
+    "noFound": "No blogs found. Create your first blog post!",
+    "myBlogs": "My Blogs",
+    "noResults": "No results."
+  },
+  "userNavigation": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "myCourses": "My Courses",
+    "myNotes": "My Notes"
+  },
+  "profileDropdown": {
+    "dashboard": "Dashboard",
+    "profile": "Profile",
+    "settings": "Settings",
+    "signOut": "Sign Out"
+  },
+  "blogEditor": {
+    "preview": "Preview",
+    "edit": "Edit"
+  },
+  "blogColumns": {
+    "title": "Title",
+    "status": "Status",
+    "createdAt": "Created At",
+    "published": "Published",
+    "draft": "Draft"
+  },
+  "pagination": {
+    "rowsSelected": "row(s) selected.",
+    "rpp": "Rows per page",
+    "page": "Page",
+    "gtfp": "Go to first page",
+    "gtpp": "Go to previous page",
+    "gtnp": "Go to next page",
+    "gtlp": "Go to last page"
+  },
+  "forms": {
+    "email": "Email",
+    "password": "Password",
+    "userform": "User Form",
+    "loading": "Loading",
+    "login": "Login",
+    "register": "Register",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "pfp": "Profile picture",
+    "useGoogle": "Register using google"
+  },
+  "placeholders": {
+    "email": "Enter your email",
+    "password": "Enter your password",
+    "firstName": "Enter your first name",
+    "lastName": "Enter your last name",
+    "pfp": "Profile picture"
   }
-} 
+}

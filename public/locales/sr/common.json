@@ -1,6 +1,6 @@
 {
-  "welcome": "Dobrodošli u CNit Academy",
-  "description": "CNit Academy platforma za učenje",
+  "welcome": "Dobrodošli u CNit Akademiju",
+  "description": "CNit Akademija - Platforma za učenje",
   "language": "Jezik",
   "switchLanguage": "Promeni jezik",
   "translation_test": "Test prevoda",
@@ -10,58 +10,162 @@
     "profile": "Profil"
   },
   "home": {
-    "newCourses": "Novi kursevi dodaju se nedeljno",
-    "title": "Savladajte moderne tehnološke veštine",
-    "subtitle": "Sveobuhvatni putevi učenja za full stack, backend, frontend, DevOps i nauku o podacima. Učite od stručnjaka iz industrije i gradite projekte iz stvarnog sveta.",
-    "startLearning": "Počnite da učite",
-    "viewCourses": "Pogledajte kurseve",
+    "newCourses": "Novi kursevi svake nedelje",
+    "title": "Savladaj moderne tehničke veštine",
+    "subtitle": "Sveobuhvatni programi za full stack, backend, frontend, DevOps i data science. Uči od stručnjaka iz industrije i radi na projektima iz stvarnog sveta.",
+    "startLearning": "Započni učenje",
+    "viewCourses": "Pogledaj kurseve",
     "stats": {
       "courses": "500+ kurseva",
-      "instructors": "Stručni predavači",
+      "instructors": "Stručni instruktori",
       "access": "Doživotni pristup"
     },
     "learningPaths": {
-      "title": "Putevi učenja",
-      "subtitle": "Izaberite svoj specijalizovani put učenja i budite spremni za posao sa našim sveobuhvatnim programom",
-      "explorePath": "Istražite put",
+      "title": "Programi učenja",
+      "subtitle": "Izaberi svoj specijalizovani put i postani spreman za posao uz naš sveobuhvatan program",
+      "explorePath": "Istraži program",
       "paths": {
         "fullStack": {
           "title": "Full Stack",
-          "description": "Savladajte i frontend i backend razvoj"
+          "description": "Ovladavanje frontend i backend razvojem"
         },
         "backend": {
           "title": "Backend",
-          "description": "Izgradite robusne serverske aplikacije"
+          "description": "Izrada robusnih serverskih aplikacija"
         },
         "frontend": {
           "title": "Frontend",
-          "description": "Kreirajte lepe, responzivne korisničke interfejse"
+          "description": "Kreiranje lepih i responzivnih korisničkih interfejsa"
         },
         "devops": {
           "title": "DevOps",
-          "description": "Automatizujte razvoj i infrastrukturu"
+          "description": "Automatizacija implementacije i infrastrukture"
         },
         "dataScience": {
-          "title": "Nauka o podacima",
-          "description": "Analizirajte podatke i gradite ML modele"
+          "title": "Data Science",
+          "description": "Analiza podataka i izrada ML modela"
         },
         "mobileDev": {
           "title": "Mobilni razvoj",
-          "description": "Gradite nativne i višeplatformske mobilne aplikacije"
+          "description": "Izrada nativnih i cross-platform mobilnih aplikacija"
         }
       }
     },
     "featuredCourses": {
       "title": "Istaknuti kursevi",
-      "subtitle": "Istražite naše najpopularnije kurseve iz različitih tehnoloških domena",
+      "subtitle": "Istraži naše najpopularnije kurseve iz različitih oblasti tehnologije",
       "tabs": {
         "all": "Svi",
         "fullstack": "Full Stack",
         "backend": "Backend",
         "frontend": "Frontend",
         "devops": "DevOps",
-        "datascience": "Nauka o podacima"
+        "datascience": "Data Science"
       }
     }
+  },
+  "leaderboard": {
+    "title": "Rang lista",
+    "loading": "Učitavanje",
+    "error": "Greška pri učitavanju rang liste",
+    "progress": "Rezultat napretka",
+    "community": "Rezultat zajednice",
+    "thisWeek": "Ove nedelje",
+    "allTimes": "Sva vremena",
+    "attednees": "Učesnici"
+  },
+  "navbar": {
+    "home": "Početna",
+    "courses": "Kursevi",
+    "blog": "Blog",
+    "about": "O nama",
+    "signIn": "Prijava",
+    "register": "Registracija"
+  },
+  "sidebar": {
+    "home": "Početna",
+    "myBlogs": "Moji blogovi",
+    "calendar": "Kalendar",
+    "search": "Pretraga",
+    "settings": "Podešavanja"
+  },
+  "coursesDashboard": {
+    "available": "Dostupni kursevi",
+    "noavailable": "Nema dostupnih kurseva.",
+    "instructor": "Instruktor",
+    "created": "Kreiran"
+  },
+  "blogNew": {
+    "createNew": "Napravi novi blog",
+    "fill": "Popuni detalje ispod da kreiraš novi blog post.",
+    "title": "Naslov",
+    "titleText": "Ovo je naslov tvog bloga. Neka bude zanimljiv!",
+    "slug": "Slug",
+    "slugText": "Ovo će biti korišćeno u URL-u. Koristi crtice umesto razmaka.",
+    "description": "Opis",
+    "descriptionText": "Kratak opis tvog blog posta.",
+    "content": "Sadržaj",
+    "contentText": "Napiši sadržaj bloga koristeći markdown.",
+    "publish": "Objavi",
+    "publishText": "Učini tvoj blog vidljivim za javnost",
+    "save": "Sačuvaj blog",
+    "saving": "Čuvanje..."
+  },
+  "blogs": {
+    "errorLoading": "Greška pri učitavanju blogova:",
+    "noFound": "Nijedan blog nije pronađen. Napravi svoj prvi blog post!",
+    "myBlogs": "Moji blogovi",
+    "noResults": "Nema rezultata."
+  },
+  "userNavigation": {
+    "dashboard": "Kontrolna tabla",
+    "profile": "Profil",
+    "myCourses": "Moji kursevi",
+    "myNotes": "Moje beleške"
+  },
+  "profileDropdown": {
+    "dashboard": "Kontrolna tabla",
+    "profile": "Profil",
+    "settings": "Podešavanja",
+    "signOut": "Odjava"
+  },
+  "blogEditor": {
+    "preview": "Pregled",
+    "edit": "Izmeni"
+  },
+  "blogColumns": {
+    "title": "Naslov",
+    "status": "Status",
+    "createdAt": "Kreirano",
+    "published": "Objavljeno",
+    "draft": "Nacrt"
+  },
+  "pagination": {
+    "rowsSelected": "izabranih redova.",
+    "rpp": "Redova po stranici",
+    "page": "Stranica",
+    "gtfp": "Idi na prvu stranicu",
+    "gtpp": "Idi na prethodnu stranicu",
+    "gtnp": "Idi na sledeću stranicu",
+    "gtlp": "Idi na poslednju stranicu"
+  },
+  "forms": {
+    "email": "Email",
+    "password": "Lozinka",
+    "userform": "Korisnički formular",
+    "loading": "Učitavanje",
+    "login": "Prijava",
+    "register": "Registracija",
+    "firstName": "Ime",
+    "lastName": "Prezime",
+    "pfp": "Profilna slika",
+    "useGoogle": "Registruj se pomoću Google-a"
+  },
+  "placeholders": {
+    "email": "Unesite svoj email",
+    "password": "Unesite svoju lozinku",
+    "firstName": "Unesite svoje ime",
+    "lastName": "Unesite svoje prezime",
+    "pfp": "Profilna slika"
   }
-} 
+}

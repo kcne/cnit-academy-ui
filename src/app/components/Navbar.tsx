@@ -1,35 +1,37 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState, useEffect } from "react"
-import { Menu, X, Code2 } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
-import { ProfileDropdown } from "./ProfileDropdown"
-import { useUser } from "../providers/userContext"
-import type { User } from "../providers/userContext"
-import { Skeleton } from "@/components/ui/skeleton"
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { Menu, X, Code2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
+import { ProfileDropdown } from "./ProfileDropdown";
+import { useUser } from "../providers/userContext";
+import type { User } from "../providers/userContext";
+import { Skeleton } from "@/components/ui/skeleton";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-  const { user, logout, fetchUserInfo, loading } = useUser()
+  const [isOpen, setIsOpen] = useState(false);
+  const { user, logout, fetchUserInfo, loading } = useUser();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    fetchUserInfo()
-  }, [])
+    fetchUserInfo();
+  }, []);
 
   const navItems = [
-    { name: "Home", href: "/" },
-    { name: "Courses", href: "/courses" },
-    { name: "Blog", href: "/blog" },
-    { name: "About", href: "/about" },
-  ]
+    { name: t("navbar.home"), href: "/" },
+    { name: t("navbar.courses"), href: "/courses" },
+    { name: t("navbar.blog"), href: "/blog" },
+    { name: t("navbar.about"), href: "/about" },
+  ];
 
   const getUserInitials = (user: User | undefined) => {
-    if (!user) return ""
-    return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
-  }
+    if (!user) return "";
+    return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase();
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -39,7 +41,7 @@ const Navbar = () => {
             <Code2 className="h-6 w-6" />
             <span className="text-xl font-bold">CentarNit Academy</span>
           </Link>
-          
+
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
@@ -68,11 +70,14 @@ const Navbar = () => {
             <ProfileDropdown user={user} onSignOut={logout} />
           ) : (
             <>
-              <Link href="/login" className={buttonVariants({ variant: "ghost", size: "sm" })}>
-                Sign in
+              <Link
+                href="/login"
+                className={buttonVariants({ variant: "ghost", size: "sm" })}
+              >
+                {t("navbar.signIn")}
               </Link>
               <Link href="/register" className={buttonVariants({ size: "sm" })}>
-                Register
+                {t("navbar.register")}
               </Link>
             </>
           )}
@@ -97,11 +102,11 @@ const Navbar = () => {
         )}
       >
         {/* Backdrop */}
-        <div 
+        <div
           className="absolute inset-0 bg-background/80 backdrop-blur-sm"
           onClick={() => setIsOpen(false)}
         />
-        
+
         {/* Navigation Panel */}
         <div className="relative h-full w-full max-w-sm bg-background border-l shadow-lg">
           <div className="flex h-16 items-center justify-between px-4 border-b">
@@ -149,36 +154,47 @@ const Navbar = () => {
                       </span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-sm font-medium">{user.firstName} {user.lastName}</span>
-                      <span className="text-xs text-muted-foreground">{user.email}</span>
+                      <span className="text-sm font-medium">
+                        {user.firstName} {user.lastName}
+                      </span>
+                      <span className="text-xs text-muted-foreground">
+                        {user.email}
+                      </span>
                     </div>
                   </div>
-                  <Button 
-                    variant="outline" 
-                    className="w-full" 
+                  <Button
+                    variant="outline"
+                    className="w-full"
                     onClick={() => {
-                      logout()
-                      setIsOpen(false)
+                      logout();
+                      setIsOpen(false);
                     }}
                   >
-                    Sign out
+                    {t("profileDropdown.signOut")}
                   </Button>
                 </div>
               ) : (
                 <>
-                  <Link 
-                    href="/login" 
-                    className={buttonVariants({ variant: "outline", size: "sm", className: "w-full" })}
+                  <Link
+                    href="/login"
+                    className={buttonVariants({
+                      variant: "outline",
+                      size: "sm",
+                      className: "w-full",
+                    })}
                     onClick={() => setIsOpen(false)}
                   >
-                    Sign in
+                    {t("navbar.signIn")}
                   </Link>
-                  <Link 
-                    href="/register" 
-                    className={buttonVariants({ size: "sm", className: "w-full" })}
+                  <Link
+                    href="/register"
+                    className={buttonVariants({
+                      size: "sm",
+                      className: "w-full",
+                    })}
                     onClick={() => setIsOpen(false)}
                   >
-                    Register
+                    {t("navbar.register")}
                   </Link>
                 </>
               )}
@@ -187,8 +203,7 @@ const Navbar = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Navbar
-
+export default Navbar;
