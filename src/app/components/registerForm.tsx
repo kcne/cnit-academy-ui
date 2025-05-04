@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { BASE_URL, useUser } from "@/app/providers/userContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useCustomToast } from "../hooks/useToast";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 
@@ -22,6 +23,7 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 const RegisterForm = () => {
+  const {showErrorToast, showSuccessToast } = useCustomToast();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { registerForm } = useUser();
@@ -42,8 +44,10 @@ const RegisterForm = () => {
         data.pfp[0],
       );
       router.push("/verify/" + encodeURIComponent(data.email));
+      showSuccessToast("Registration successful!");
     } catch (error) {
       console.error("Registration failed", error);
+      showErrorToast(error);
     } finally {
       setLoading(false);
     }
