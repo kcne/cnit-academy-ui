@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const schema = z.object({
   email: z.string().email(),
@@ -103,13 +105,16 @@ const Form = () => {
               </p>
             )}
           </div>
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            disabled={loading}
-          >
+          <Button className="w-full px-4 py-2">
             {loading ? "Loading..." : "Login"}
-          </button>
+          </Button>
+          {/* <button */}
+          {/*   type="submit" */}
+          {/*   className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" */}
+          {/*   disabled={loading} */}
+          {/* > */}
+          {/*   {loading ? "Loading..." : "Login"} */}
+          {/* </button> */}
         </form>
         <div className="py-4">
           <button
@@ -128,6 +133,9 @@ const Form = () => {
             <span className="aspect-square h-full"></span>
           </button>
         </div>
+        <p className="w-full text-center pt-3 text-sm">
+          <Link href={"/register"}>Don't have an account? Click here</Link>
+        </p>
       </div>
     </div>
   );
