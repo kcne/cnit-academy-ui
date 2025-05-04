@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const schema = z.object({
   firstName: z.string().min(3, "First name must be at least 3 characters."),
@@ -22,6 +23,7 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 const RegisterForm = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { registerForm } = useUser();
@@ -39,7 +41,7 @@ const RegisterForm = () => {
         data.lastName,
         data.email,
         data.password,
-        data.pfp[0],
+        data.pfp[0]
       );
       router.push("/verify/" + encodeURIComponent(data.email));
     } catch (error) {
@@ -61,20 +63,22 @@ const RegisterForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center">
+          {t("forms.register")}
+        </h2>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-4">
             <label
               htmlFor="firstName"
               className="block text-sm font-medium text-gray-700"
             >
-              First name
+              {t("forms.firstName")}
             </label>
             <input
               id="firstName"
               {...register("firstName")}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Enter your first name"
+              placeholder={t("placeholders.firstName")}
             />
             {errors.firstName && (
               <p className="text-red-500 text-sm mt-1">
@@ -88,13 +92,13 @@ const RegisterForm = () => {
               htmlFor="lastName"
               className="block text-sm font-medium text-gray-700"
             >
-              Last name
+              {t("forms.lastName")}
             </label>
             <input
               id="lastName"
               {...register("lastName")}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Enter your last name"
+              placeholder={t("placeholders.lastName")}
             />
             {errors.lastName && (
               <p className="text-red-500 text-sm mt-1">
@@ -108,13 +112,13 @@ const RegisterForm = () => {
               htmlFor="email"
               className="block text-sm font-medium text-gray-700"
             >
-              Email
+              {t("forms.email")}
             </label>
             <input
               id="email"
               {...register("email")}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Enter your email"
+              placeholder={t("placeholders.email")}
             />
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
@@ -128,14 +132,14 @@ const RegisterForm = () => {
               htmlFor="password"
               className="block text-sm font-medium text-gray-700"
             >
-              Password
+              {t("forms.password")}
             </label>
             <input
               id="password"
               type="password"
               {...register("password")}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Enter your password"
+              placeholder={t("placeholders.password")}
             />
             {errors.password && (
               <p className="text-red-500 text-sm mt-1">
@@ -149,14 +153,14 @@ const RegisterForm = () => {
               htmlFor="profile picture"
               className="block text-sm font-medium text-gray-700"
             >
-              Profile picture
+              {t("forms.pfp")}
             </label>
             <input
               id="pfp"
               type="file"
               {...register("pfp")}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="pfp here"
+              placeholder={t("placeholders.pfp")}
             />
             {errors.pfp && (
               <p className="text-red-500 text-sm mt-1">
@@ -170,7 +174,7 @@ const RegisterForm = () => {
             className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             disabled={loading}
           >
-            {loading ? "Loading..." : "Register"}
+            {loading ? t("forms.loading") : t("forms.register")}
           </button>
         </form>
         <div className="py-4">
@@ -186,7 +190,7 @@ const RegisterForm = () => {
               alt="G"
               className="h-5/6"
             />
-            <span>Register using google</span>
+            <span>{t("forms.useGoogle")}</span>
             <span className="aspect-square h-full"></span>
           </button>
         </div>

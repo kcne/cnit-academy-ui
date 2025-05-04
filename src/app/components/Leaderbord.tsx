@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export type User = {
   id: string;
@@ -19,6 +20,7 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
   const sortedUsers = [...users].sort((a, b) => b.totalCoins - a.totalCoins);
   const topThree = sortedUsers.slice(0, 3);
   const restUsers = sortedUsers.slice(3, 20);
+  const { t } = useTranslation();
 
   const colors = [
     "#FF5733",
@@ -46,13 +48,17 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
   return (
     <div className="w-[700px] min-h-[400px] mx-auto p-8 bg-white rounded-lg shadow-2xl">
       <div className="mt-[-10px] space-x-6">
-        <span className="text-sm text-black-500">This week</span>
-        <span className="text-sm text-gray-500">All times</span>
+        <span className="text-sm text-black-500">
+          {t("leaderboard.thisWeek")}
+        </span>
+        <span className="text-sm text-gray-500">
+          {t("leaderboard.allTimes")}
+        </span>
       </div>
 
       <div className="flex items-center">
         <span className="text-xs text-black-500  ml-auto ">
-          👥 268563 Attendees
+          👥 268563 {t("leaderboard.attednees")}
         </span>
       </div>
 

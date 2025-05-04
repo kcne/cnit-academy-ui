@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,20 +13,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-import { Textarea } from "@/components/ui/textarea"
-import MarkdownEditor from "@/components/MarkdownEditor"
-import { blogFormSchema } from "@/schemas/schema"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import MarkdownEditor from "@/components/MarkdownEditor";
+import { blogFormSchema } from "@/schemas/schema";
+import { useTranslation } from "react-i18next";
 
 interface BlogFormProps {
-  onSubmit: (values: z.infer<typeof blogFormSchema>) => void
-  defaultValues?: Partial<z.infer<typeof blogFormSchema>>
-  isLoading?: boolean
+  onSubmit: (values: z.infer<typeof blogFormSchema>) => void;
+  defaultValues?: Partial<z.infer<typeof blogFormSchema>>;
+  isLoading?: boolean;
 }
 
-export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) {
+export function BlogForm({
+  onSubmit,
+  defaultValues,
+  isLoading,
+}: BlogFormProps) {
   const form = useForm<z.infer<typeof blogFormSchema>>({
     resolver: zodResolver(blogFormSchema),
     defaultValues: {
@@ -37,24 +42,27 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
       published: false,
       ...defaultValues,
     },
-  })
+  });
+
+  const { t } = useTranslation();
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-4xl">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 max-w-4xl"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel>{t("blogNew.title")}</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter blog title" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is your blog title. Make it catchy!
-                </FormDescription>
+                <FormDescription>{t("blogNew.titleText")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -65,13 +73,11 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
             name="slug"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Slug</FormLabel>
+                <FormLabel>{t("blogNew.slug")}</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter blog slug" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This will be used in the URL. Use hyphens instead of spaces.
-                </FormDescription>
+                <FormDescription>{t("blogNew.slugText")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -83,7 +89,7 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
           name="blogDescription"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Description</FormLabel>
+              <FormLabel>{t("blogNew.description")}</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="Enter a brief description of your blog"
@@ -91,9 +97,7 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
                   {...field}
                 />
               </FormControl>
-              <FormDescription>
-                A short description of your blog post.
-              </FormDescription>
+              <FormDescription>{t("blogNew.descriptionText")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -104,7 +108,7 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Content</FormLabel>
+              <FormLabel>{t("blogNew.content")}</FormLabel>
               <FormControl>
                 <div className="rounded-md border">
                   <MarkdownEditor
@@ -113,9 +117,7 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
                   />
                 </div>
               </FormControl>
-              <FormDescription>
-                Write your blog content using markdown.
-              </FormDescription>
+              <FormDescription>{t("blogNew.contentText")}</FormDescription>
               <FormMessage />
             </FormItem>
           )}
@@ -127,10 +129,10 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
           render={({ field }) => (
             <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
               <div className="space-y-0.5">
-                <FormLabel className="text-base">Publish</FormLabel>
-                <FormDescription>
-                  Make your blog visible to the public.
-                </FormDescription>
+                <FormLabel className="text-base">
+                  {t("blogNew.publish")}
+                </FormLabel>
+                <FormDescription>{t("blogNew.publishText")}</FormDescription>
               </div>
               <FormControl>
                 <Switch
@@ -144,10 +146,10 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
 
         <div className="flex justify-end">
           <Button type="submit" disabled={isLoading}>
-            {isLoading ? "Saving..." : "Save Blog"}
+            {isLoading ? `${t("blogNew.saving")}` : t("blogNew.save")}
           </Button>
         </div>
       </form>
     </Form>
-  )
-} 
+  );
+}
