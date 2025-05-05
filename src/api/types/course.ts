@@ -13,7 +13,7 @@ export interface Course {
   id: number;
   title: string;
   description?: string;
-  durationInHours?: string;
+  durationInHours?: number;
   createdAt: string;
   coins: number;
   lectures: Lecture[];

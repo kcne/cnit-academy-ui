@@ -13,6 +13,7 @@ import { useEffect, useState } from 'react';
 import { useLanguageStore } from '@/store/languageStore';
 
 const LanguageSwitcher = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { t } = useTranslation(); // Still use t for potential labels if needed
   const { language, setLanguage } = useLanguageStore();
   const [mounted, setMounted] = useState(false);
