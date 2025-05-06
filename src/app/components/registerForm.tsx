@@ -197,7 +197,7 @@ const RegisterForm = () => {
             <Image
               src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw"
               alt="G"
-              className="h-5/6"
+              className="h-5/6 aspect-square w-auto"
               width={200}
               height={200}
             />
