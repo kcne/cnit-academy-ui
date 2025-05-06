@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { FaRocket, FaHandshake, FaLightbulb } from 'react-icons/fa';
+import Image from "next/image";
 
 const team = [
   {
@@ -94,9 +95,11 @@ const AboutPage = () => {
               transition={{ delay: index * 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
+                width={200}
+                height={200}
                 className="w-24 h-24 mx-auto rounded-full object-cover mb-4"
               />
               <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
@@ -138,7 +141,7 @@ const AboutPage = () => {
                 transition={{ delay: i * 0.3 }}
                 viewport={{ once: true }}
               >
-                <p className="text-gray-700 italic">"{item.feedback}"</p>
+                <p className="text-gray-700 italic">&quot;{item.feedback}&quot;</p>
                 <p className="mt-4 font-semibold text-gray-900">— {item.name}</p>
               </motion.div>
             ))}
