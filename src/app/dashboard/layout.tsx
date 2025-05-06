@@ -1,5 +1,5 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "../components/app-sidebar"
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "../components/app-sidebar";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,11 +11,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <SidebarTrigger />
             <h1 className="text-2xl font-semibold">Dashboard</h1>
           </div>
-          <div className="space-y-6">
-            {children}
-          </div>
+          <div className="space-y-6">{children}</div>
         </main>
       </div>
     </SidebarProvider>
-  )
+  );
 }
