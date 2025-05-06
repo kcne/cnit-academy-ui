@@ -6,11 +6,12 @@ import { useRouter } from "next/navigation";
 import { BASE_URL, useUser } from "@/app/providers/userContext";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useCustomToast } from "../hooks/useToast";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import Image from "next/image";
 
 const schema = z.object({
   firstName: z.string().min(3, "First name must be at least 3 characters."),
@@ -25,10 +26,10 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 const RegisterForm = () => {
-  const {showErrorToast, showSuccessToast } = useCustomToast();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const { registerForm } = useUser();
+  const { toast } = useToast()
   const {
     register,
     handleSubmit,
@@ -46,10 +47,17 @@ const RegisterForm = () => {
         data.pfp[0],
       );
       router.push("/verify/" + encodeURIComponent(data.email));
-      showSuccessToast("Registration successful!");
+      toast({
+        title: "Registration successful!",
+        description: "Thank you for registering!",
+      })
     } catch (error) {
       console.error("Registration failed", error);
-      showErrorToast(error);
+      toast({
+        title: "Registration failed!",
+        description: "Please try again.",
+        variant: "destructive"
+      })
     } finally {
       setLoading(false);
     }
@@ -186,10 +194,12 @@ const RegisterForm = () => {
               googleLogin();
             }}
           >
-            <img
+            <Image
               src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw"
               alt="G"
               className="h-5/6"
+              width={200}
+              height={200}
             />
             <span>Register using google</span>
             <span className="aspect-square h-full"></span>

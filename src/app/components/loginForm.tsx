@@ -11,7 +11,8 @@ import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useCustomToast } from "../hooks/useToast";
+import Image from "next/image";
+import { useToast } from "@/hooks/use-toast";
 
 const schema = z.object({
   email: z.string().email(),
@@ -23,10 +24,11 @@ const schema = z.object({
 type Inputs = z.infer<typeof schema>;
 
 const Form = () => {
-  const { showErrorToast, showSuccessToast } = useCustomToast();
   const [loading, setLoading] = useState<boolean>(false);
-  const router = useRouter(); // Koristi useRouter
+  const router = useRouter();
   const { login } = useUser();
+  const { toast } = useToast()
+
   const {
     register,
     handleSubmit,
@@ -54,10 +56,17 @@ const Form = () => {
     try {
       await login(email, password);
       router.push("/");
-      showSuccessToast("Login successful!");
+      toast({
+        title: "Login successful!",
+        description: "Welcome back!",
+      })
     } catch (error) {
       console.error("Login failed", error);
-      showErrorToast(error);
+      toast({
+        title: "Login failed!",
+        description: "Please try again.",
+        variant: "destructive"
+      })
     } finally {
       setLoading(false);
     }
@@ -128,17 +137,19 @@ const Form = () => {
               googleLogin();
             }}
           >
-            <img
+            <Image
               src="https://www.gstatic.com/marketing-cms/assets/images/d5/dc/cfe9ce8b4425b410b49b7f2dd3f3/g.webp=s96-fcrop64=1,00000000ffffffff-rw"
               alt="G"
               className="h-5/6"
+              width={200}
+              height={200}
             />
             <span>Login using google</span>
             <span className="aspect-square h-full"></span>
           </button>
         </div>
         <p className="w-full text-center pt-3 text-sm">
-          <Link href={"/register"}>Don't have an account? Click here</Link>
+          <Link href={"/register"}>Don&apos;t have an account? Click here</Link>
         </p>
       </div>
     </div>
