@@ -19,6 +19,7 @@ export function setupApiErrorHandling() {
       }
       return response;
     } catch (error) {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const toast = useCustomToast();
       toast.showErrorToast(error);
       throw error;

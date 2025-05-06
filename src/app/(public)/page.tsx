@@ -1,5 +1,4 @@
 "use client"
-import Link from "next/link"
 import Image from "next/image"
 import {
   Code2,
@@ -12,7 +11,7 @@ import {
   ChevronRight,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card,  CardDescription, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
 import { useTranslation } from "react-i18next"

@@ -6,7 +6,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -17,10 +16,10 @@ export interface Course {
   id: number;
   title: string;
   description?: string;
-  durationInHours?: any;
+  durationInHours?: number;
   createdAt: string;
   coins: number;
-  lectures: any[];
+  lectures: object[];
 }
 
 interface CourseCardProps {
@@ -35,7 +34,7 @@ export const CourseCard: FC<CourseCardProps> = ({
   className = "",
 }) => {
   const {
-    id,
+    // id,
     title,
     description,
     durationInHours,
@@ -78,7 +77,7 @@ export const CourseCard: FC<CourseCardProps> = ({
           <div className="flex items-center gap-1 text-muted-foreground">
             <Clock className="h-4 w-4" />
             <span>
-              {durationInHours.toFixed(1)}{" "}
+              {durationInHours?.toFixed(1)}{" "}
               {durationInHours === 1 ? "hour" : "hours"}
             </span>
           </div>
