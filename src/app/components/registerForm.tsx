@@ -9,6 +9,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useCustomToast } from "../hooks/useToast";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const schema = z.object({
   firstName: z.string().min(3, "First name must be at least 3 characters."),
@@ -56,7 +58,10 @@ const RegisterForm = () => {
   const googleLogin = useGoogleLogin({
     flow: "auth-code",
     onSuccess: async ({ code }) => {
-      await axios.post(BASE_URL + "/api/auth/google", { code });
+      const { token } = (
+        await axios.post(BASE_URL + "/api/auth/google", { code })
+      ).data;
+      localStorage.setItem("authToken", token);
       setLoading(false);
       router.push("/");
     },
@@ -169,13 +174,9 @@ const RegisterForm = () => {
             )}
           </div>
 
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-            disabled={loading}
-          >
+          <Button className="w-full px-4 py-2">
             {loading ? "Loading..." : "Register"}
-          </button>
+          </Button>
         </form>
         <div className="py-4">
           <button
@@ -194,6 +195,9 @@ const RegisterForm = () => {
             <span className="aspect-square h-full"></span>
           </button>
         </div>
+        <p className="w-full text-center pt-3 text-sm">
+          <Link href={"/login"}>Already have an account? Click here</Link>
+        </p>
       </div>
     </div>
   );
