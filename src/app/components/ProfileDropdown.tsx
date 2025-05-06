@@ -30,16 +30,12 @@ export function ProfileDropdown({ user, onSignOut = () => {} }: ProfileDropdownP
 
   if (!user) return null
 
-  const getProfileImageUrl = (userId: number) => {
-    return `${process.env.NEXT_PUBLIC_BUCKET_ENDPOINT}/pfp/${userId}.jpg`
-  }
-
   return (
     <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-auto p-1 px-2 flex items-center gap-2">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={getProfileImageUrl(user.id)} alt={`${user.firstName} ${user.lastName}`} />
+            <AvatarImage src={user.pfp} alt={`${user.firstName} ${user.lastName}`} />
             <AvatarFallback>{getUserInitials(user)}</AvatarFallback>
           </Avatar>
           <div className="flex flex-col items-start text-sm">

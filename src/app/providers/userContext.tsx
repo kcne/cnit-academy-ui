@@ -17,6 +17,8 @@ export type User =
       firstName: string;
       lastName: string;
       email: string;
+      pfp: string;
+      totalCoins: number;
     }
   | undefined;
 
