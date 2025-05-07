@@ -1,5 +1,4 @@
 "use client";
-
 import { useParams } from "next/navigation";
 import { BlogForm } from "@/app/dashboard/blog/components/blog-form";
 import { useBlogById } from "@/api/hooks/useBlogById";
@@ -11,7 +10,6 @@ import * as z from "zod";
 export default function EditBlogPage() {
   const params = useParams();
   const id = params.id as string;
-  console.log("Blog ID from URL:", id);
   const { toast } = useToast();
 
   const { data: blog, isLoading, isError } = useBlogById(id);
@@ -29,9 +27,6 @@ export default function EditBlogPage() {
   };
 
   const handleSubmit = (values: z.infer<typeof blogFormSchema>) => {
-    console.log("Submitting blog with values:", values);
-
-    console.log("Triggering updateBlog...");
     updateBlog(
       { ...blog, ...values },
       {

@@ -1,10 +1,8 @@
-"use client"
-
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-
-import { Button } from "@/components/ui/button"
+"use client";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,20 +11,26 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { Switch } from "@/components/ui/switch"
-import { Textarea } from "@/components/ui/textarea"
-import MarkdownEditor from "@/components/MarkdownEditor"
-import { blogFormSchema } from "@/schemas/schema"
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Textarea } from "@/components/ui/textarea";
+import MarkdownEditor from "@/components/MarkdownEditor";
+import { blogFormSchema } from "@/schemas/schema";
+import { useRouter } from "next/navigation";
 
 interface BlogFormProps {
-  onSubmit: (values: z.infer<typeof blogFormSchema>) => void
-  defaultValues?: Partial<z.infer<typeof blogFormSchema>>
-  isLoading?: boolean
+  onSubmit: (values: z.infer<typeof blogFormSchema>) => void;
+  defaultValues?: Partial<z.infer<typeof blogFormSchema>>;
+  isLoading?: boolean;
 }
 
-export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) {
+export function BlogForm({
+  onSubmit,
+  defaultValues,
+  isLoading,
+}: BlogFormProps) {
+  const router = useRouter();
   const form = useForm<z.infer<typeof blogFormSchema>>({
     resolver: zodResolver(blogFormSchema),
     defaultValues: {
@@ -37,11 +41,18 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
       published: false,
       ...defaultValues,
     },
-  })
+  });
+  const handleSubmit = async (values: z.infer<typeof blogFormSchema>) => {
+    await onSubmit(values);
+    router.push("/dashboard/blogs");
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 max-w-4xl">
+      <form
+        onSubmit={form.handleSubmit(handleSubmit)}
+        className="space-y-8 max-w-4xl"
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}
@@ -149,5 +160,5 @@ export function BlogForm({ onSubmit, defaultValues, isLoading }: BlogFormProps) 
         </div>
       </form>
     </Form>
-  )
-} 
+  );
+}
