@@ -1,0 +1,67 @@
+{
+  "welcome": "Welcome to CNit Academy",
+  "description": "Cnit Academy Learning Platform",
+  "language": "Language",
+  "switchLanguage": "Switch language",
+  "translation_test": "Translation test",
+  "navigation": {
+    "home": "Home",
+    "courses": "Courses",
+    "profile": "Profile"
+  },
+  "home": {
+    "newCourses": "New Courses Added Weekly",
+    "title": "Master Modern Tech Skills",
+    "subtitle": "Comprehensive learning paths for full stack, backend, frontend, DevOps, and data science. Learn from industry experts and build real-world projects.",
+    "startLearning": "Start Learning",
+    "viewCourses": "View Courses",
+    "stats": {
+      "courses": "500+ Courses",
+      "instructors": "Expert Instructors",
+      "access": "Lifetime Access"
+    },
+    "learningPaths": {
+      "title": "Learning Paths",
+      "subtitle": "Choose your specialized learning path and become job-ready with our comprehensive curriculum",
+      "explorePath": "Explore Path",
+      "paths": {
+        "fullStack": {
+          "title": "Full Stack",
+          "description": "Master both frontend and backend development"
+        },
+        "backend": {
+          "title": "Backend",
+          "description": "Build robust server-side applications"
+        },
+        "frontend": {
+          "title": "Frontend",
+          "description": "Create beautiful, responsive user interfaces"
+        },
+        "devops": {
+          "title": "DevOps",
+          "description": "Automate deployment and infrastructure"
+        },
+        "dataScience": {
+          "title": "Data Science",
+          "description": "Analyze data and build ML models"
+        },
+        "mobileDev": {
+          "title": "Mobile Dev",
+          "description": "Build native and cross-platform mobile apps"
+        }
+      }
+    },
+    "featuredCourses": {
+      "title": "Featured Courses",
+      "subtitle": "Explore our most popular courses across different technology domains",
+      "tabs": {
+        "all": "All",
+        "fullstack": "Full Stack",
+        "backend": "Backend",
+        "frontend": "Frontend",
+        "devops": "DevOps",
+        "datascience": "Data Science"
+      }
+    }
+  }
+} 

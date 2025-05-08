@@ -1,0 +1,67 @@
+{
+  "welcome": "Dobrodošli u CNit Academy",
+  "description": "CNit Academy platforma za učenje",
+  "language": "Jezik",
+  "switchLanguage": "Promeni jezik",
+  "translation_test": "Test prevoda",
+  "navigation": {
+    "home": "Početna",
+    "courses": "Kursevi",
+    "profile": "Profil"
+  },
+  "home": {
+    "newCourses": "Novi kursevi dodaju se nedeljno",
+    "title": "Savladajte moderne tehnološke veštine",
+    "subtitle": "Sveobuhvatni putevi učenja za full stack, backend, frontend, DevOps i nauku o podacima. Učite od stručnjaka iz industrije i gradite projekte iz stvarnog sveta.",
+    "startLearning": "Počnite da učite",
+    "viewCourses": "Pogledajte kurseve",
+    "stats": {
+      "courses": "500+ kurseva",
+      "instructors": "Stručni predavači",
+      "access": "Doživotni pristup"
+    },
+    "learningPaths": {
+      "title": "Putevi učenja",
+      "subtitle": "Izaberite svoj specijalizovani put učenja i budite spremni za posao sa našim sveobuhvatnim programom",
+      "explorePath": "Istražite put",
+      "paths": {
+        "fullStack": {
+          "title": "Full Stack",
+          "description": "Savladajte i frontend i backend razvoj"
+        },
+        "backend": {
+          "title": "Backend",
+          "description": "Izgradite robusne serverske aplikacije"
+        },
+        "frontend": {
+          "title": "Frontend",
+          "description": "Kreirajte lepe, responzivne korisničke interfejse"
+        },
+        "devops": {
+          "title": "DevOps",
+          "description": "Automatizujte razvoj i infrastrukturu"
+        },
+        "dataScience": {
+          "title": "Nauka o podacima",
+          "description": "Analizirajte podatke i gradite ML modele"
+        },
+        "mobileDev": {
+          "title": "Mobilni razvoj",
+          "description": "Gradite nativne i višeplatformske mobilne aplikacije"
+        }
+      }
+    },
+    "featuredCourses": {
+      "title": "Istaknuti kursevi",
+      "subtitle": "Istražite naše najpopularnije kurseve iz različitih tehnoloških domena",
+      "tabs": {
+        "all": "Svi",
+        "fullstack": "Full Stack",
+        "backend": "Backend",
+        "frontend": "Frontend",
+        "devops": "DevOps",
+        "datascience": "Nauka o podacima"
+      }
+    }
+  }
+} 

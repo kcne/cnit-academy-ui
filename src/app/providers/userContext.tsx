@@ -1,13 +1,15 @@
 "use client";
 
-import React, { createContext, useState, useContext, useEffect, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from "react";
 import axios from "axios";
-import AWS from "aws-sdk";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
-const BUCKET_ACCESS_KEY = process.env.NEXT_PUBLIC_BUCKET_ACCESS_KEY;
-const BUCKET_SECRET_KEY = process.env.NEXT_PUBLIC_BUCKET_SECRET_KEY;
-const BUCKET_ENDPOINT = process.env.NEXT_PUBLIC_BUCKET_ENDPOINT;
 
 export type User =
   | {
@@ -22,12 +24,12 @@ type UserContextType = {
   user: User;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (
+  registerForm: (
     firstName: string,
     lastName: string,
     email: string,
     password: string,
-    pfp: File
+    pfp: File,
   ) => Promise<void>;
   logout: () => void;
   fetchUserInfo: () => Promise<void>;
@@ -62,42 +64,26 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
-  const register = async (
+  const registerForm = async (
     firstName: string,
     lastName: string,
     email: string,
     password: string,
-    pfp: File
+    pfp: File,
   ) => {
     try {
       setLoading(true);
-      console.log(BUCKET_ACCESS_KEY);
-      console.log(BUCKET_SECRET_KEY);
-      console.log(BUCKET_ENDPOINT);
-      AWS.config.update({
-        accessKeyId: BUCKET_ACCESS_KEY,
-        secretAccessKey: BUCKET_SECRET_KEY,
-        s3ForcePathStyle: true,
-      });
-      const s3 = new AWS.S3({
-        endpoint: BUCKET_ENDPOINT,
-      });
 
-      const user = await axios.post(BASE_URL + "/api/auth/register", {
-        firstName,
-        lastName,
-        email,
-        password,
+      const formData = new FormData();
+      formData.append("firstName", firstName);
+      formData.append("lastName", lastName);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("pfp", pfp);
+
+      await axios.post(BASE_URL + "/api/auth/register-form", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
-      if (pfp) {
-        await s3
-          .putObject({
-            Bucket: "pfp",
-            Body: pfp,
-            Key: String(user.data.id) + "." + pfp.name.split(".").reverse()[0],
-          })
-          .promise();
-      }
     } catch (error) {
       console.error("Registration failed:", error);
       throw error;
@@ -172,7 +158,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
         user,
         loading,
         login,
-        register,
+        registerForm: registerForm,
         logout,
         fetchUserInfo,
         verifyEmail,
