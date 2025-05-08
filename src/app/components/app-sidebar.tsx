@@ -9,7 +9,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
   } from "@/components/ui/sidebar"
-import { Calendar, Code, Home, NotebookPen, Search, Settings } from "lucide-react"
+import { BookCopy, Calendar, Code, FilePlus, Home, NotebookPen, Search, Settings } from "lucide-react"
 import Link from "next/link"
   
 
@@ -25,14 +25,9 @@ import Link from "next/link"
       icon: NotebookPen,
     },
     {
-      title: "Calendar",
-      url: "#",
-      icon: Calendar,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: Search,
+      title: "My Courses",
+      url: "/dashboard/my-courses",
+      icon: BookCopy,
     },
     {
       title: "Settings",

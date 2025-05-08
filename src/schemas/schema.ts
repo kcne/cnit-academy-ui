@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 export const blogFormSchema = z.object({
+  id: z.number().optional(),
   title: z.string().min(1, "Title is required").max(100),
   slug: z.string().min(1, "Slug is required").max(100),
   content: z.string().min(1, "Content is required"),
