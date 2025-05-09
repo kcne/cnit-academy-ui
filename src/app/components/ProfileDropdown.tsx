@@ -63,7 +63,7 @@ export function ProfileDropdown({ user, onSignOut = () => {} }: ProfileDropdownP
           </Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href="/profile" className="cursor-pointer">
+          <Link href="/user/profile" className="cursor-pointer">
             <UserCircle className="mr-2 h-4 w-4" />
             <span>Profile</span>
           </Link>

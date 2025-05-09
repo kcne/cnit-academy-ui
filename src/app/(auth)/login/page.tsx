@@ -5,7 +5,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 export default function LoginPage() {
   return (
-    <GoogleOAuthProvider clientId={process.env.OAUTH2_CLIENT_ID ?? ""}>
+    <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_OAUTH2_CLIENT_ID ?? ""}>
       <Form />
     </GoogleOAuthProvider>
   );

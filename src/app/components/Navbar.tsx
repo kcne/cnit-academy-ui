@@ -20,10 +20,12 @@ const Navbar = () => {
   }, [])
 
   const navItems = [
-    { name: "Home", href: "/" },
+    // vec moze da ide na home preko ikonice
+    // { name: "Home", href: "/" },
     { name: "Courses", href: "/courses" },
     { name: "Blog", href: "/blog" },
-    { name: "About", href: "/about" },
+    { name: "About", href: "/aboutUs" },
+    { name: "For professors", href: "/roleRequest" },
   ]
 
   const getUserInitials = (user: User | undefined) => {
