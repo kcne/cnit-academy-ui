@@ -4,7 +4,8 @@ import { useState } from "react";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
 
-import { BASE_URL, useUser } from "@/app/providers/userContext";
+import { useUser } from "@/app/providers/userContext";
+import { BASE_URL } from "../providers/envConstants";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useGoogleLogin } from "@react-oauth/google";

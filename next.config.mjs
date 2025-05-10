@@ -15,6 +15,18 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '3000',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn1.iconfinder.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

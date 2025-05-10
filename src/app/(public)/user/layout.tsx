@@ -1,4 +1,4 @@
-import UserNavigation from "../../components/UserNavigation";
+// import UserNavigation from "../../components/UserNavigation";
 export default function Layout({
   children,
 }: Readonly<{
@@ -8,7 +8,7 @@ export default function Layout({
     <>
       {/* Main Content */}
 
-      <UserNavigation />
+      {/* <UserNavigation /> */}
       {children}
     </>
   );

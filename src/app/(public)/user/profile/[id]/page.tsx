@@ -1,11 +1,11 @@
 "use client";
 
-// import Image from "next/image";
-import { useUser } from "@/app/providers/userContext";
-import { useEffect } from "react";
-import { Coins, Flame } from "lucide-react";
-import { BASE_URL } from "@/app/providers/envConstants";
 import Image from "next/image";
+import { User } from "@/app/providers/userContext";
+import { useEffect, useState } from "react";
+import { Coins, Flame } from "lucide-react";
+import axios from "axios";
+import { BASE_URL } from "@/app/providers/envConstants";
 
 const DEFAULT_PFP = BASE_URL + "/files/pfp/default.png";
 
@@ -24,16 +24,26 @@ const MONTHS = [
   "December",
 ];
 
-export default function ProfilePage() {
-  const { user, fetchUserInfo } = useUser();
+export default function ProfilePage({ params }: { params: { id: number } }) {
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetchUserInfo();
+    const token = localStorage.getItem("authToken");
+
+    axios
+      .get(BASE_URL + "/api/profile/" + params.id, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        setUser(res.data);
+      });
   }, []);
 
   return (
-    <div>
-      <div className="flex space-x-4 bg-white p-6 rounded-lg shadow-lg">
+    <div className="bg-gray-100 min-h-screen w-full p-4 pr-8 flex justify-center">
+      <div className="w-full xl:w-3/4">
         <div className="flex flex-col sm:flex-row gap-4 bg-white p-6 rounded-lg shadow-lg items-center w-full">
           <Image
             src={user?.pfp ?? DEFAULT_PFP}
