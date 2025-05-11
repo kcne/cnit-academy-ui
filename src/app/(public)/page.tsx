@@ -1,5 +1,5 @@
-"use client"
-import Image from "next/image"
+"use client";
+import Image from "next/image";
 import {
   Code2,
   Database,
@@ -9,16 +9,16 @@ import {
   BarChart3,
   CheckCircle,
   ChevronRight,
-} from "lucide-react"
-import { Badge } from "@/components/ui/badge"
-import { Card,  CardDescription, CardTitle } from "@/components/ui/card"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Button } from "@/components/ui/button"
-import { useTranslation } from "react-i18next"
+} from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 export default function HomePage() {
   const { t } = useTranslation();
-  
+
   return (
     <div className="flex min-h-screen flex-col">
       <main className="flex-1">
@@ -29,36 +29,36 @@ export default function HomePage() {
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
                   <Badge className="inline-flex" variant="secondary">
-                    {t('home.newCourses')}
+                    {t("home.newCourses")}
                   </Badge>
                   <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    {t('home.title')}
+                    {t("home.title")}
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    {t('home.subtitle')}
+                    {t("home.subtitle")}
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Button size="lg" className="gap-1.5">
-                    {t('home.startLearning')}
+                    {t("home.startLearning")}
                     <ChevronRight className="h-4 w-4" />
                   </Button>
                   <Button size="lg" variant="outline">
-                    {t('home.viewCourses')}
+                    {t("home.viewCourses")}
                   </Button>
                 </div>
                 <div className="flex items-center gap-4 text-sm">
                   <div className="flex items-center gap-1">
                     <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>{t('home.stats.courses')}</span>
+                    <span>{t("home.stats.courses")}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>{t('home.stats.instructors')}</span>
+                    <span>{t("home.stats.instructors")}</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <CheckCircle className="h-4 w-4 text-primary" />
-                    <span>{t('home.stats.access')}</span>
+                    <span>{t("home.stats.access")}</span>
                   </div>
                 </div>
               </div>
@@ -67,7 +67,7 @@ export default function HomePage() {
                   src="/bg-image.jpg"
                   width={550}
                   height={550}
-                  alt={t('description')}
+                  alt={t("description")}
                   className="rounded-lg object-cover"
                   priority
                 />
@@ -82,10 +82,10 @@ export default function HomePage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  {t('home.learningPaths.title')}
+                  {t("home.learningPaths.title")}
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t('home.learningPaths.subtitle')}
+                  {t("home.learningPaths.subtitle")}
                 </p>
               </div>
             </div>
@@ -95,10 +95,14 @@ export default function HomePage() {
                 <div className="rounded-full bg-primary/10 p-3 mb-4">
                   <Layers className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl mb-2">{t('home.learningPaths.paths.fullStack.title')}</CardTitle>
-                <CardDescription>{t('home.learningPaths.paths.fullStack.description')}</CardDescription>
+                <CardTitle className="text-xl mb-2">
+                  {t("home.learningPaths.paths.fullStack.title")}
+                </CardTitle>
+                <CardDescription>
+                  {t("home.learningPaths.paths.fullStack.description")}
+                </CardDescription>
                 <Button variant="ghost" size="sm" className="mt-4">
-                  {t('home.learningPaths.explorePath')}
+                  {t("home.learningPaths.explorePath")}
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Card>
@@ -107,10 +111,14 @@ export default function HomePage() {
                 <div className="rounded-full bg-primary/10 p-3 mb-4">
                   <Server className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl mb-2">{t('home.learningPaths.paths.backend.title')}</CardTitle>
-                <CardDescription>{t('home.learningPaths.paths.backend.description')}</CardDescription>
+                <CardTitle className="text-xl mb-2">
+                  {t("home.learningPaths.paths.backend.title")}
+                </CardTitle>
+                <CardDescription>
+                  {t("home.learningPaths.paths.backend.description")}
+                </CardDescription>
                 <Button variant="ghost" size="sm" className="mt-4">
-                  {t('home.learningPaths.explorePath')}
+                  {t("home.learningPaths.explorePath")}
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Card>
@@ -119,10 +127,14 @@ export default function HomePage() {
                 <div className="rounded-full bg-primary/10 p-3 mb-4">
                   <Globe className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl mb-2">{t('home.learningPaths.paths.frontend.title')}</CardTitle>
-                <CardDescription>{t('home.learningPaths.paths.frontend.description')}</CardDescription>
+                <CardTitle className="text-xl mb-2">
+                  {t("home.learningPaths.paths.frontend.title")}
+                </CardTitle>
+                <CardDescription>
+                  {t("home.learningPaths.paths.frontend.description")}
+                </CardDescription>
                 <Button variant="ghost" size="sm" className="mt-4">
-                  {t('home.learningPaths.explorePath')}
+                  {t("home.learningPaths.explorePath")}
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Card>
@@ -131,10 +143,14 @@ export default function HomePage() {
                 <div className="rounded-full bg-primary/10 p-3 mb-4">
                   <Database className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl mb-2">{t('home.learningPaths.paths.devops.title')}</CardTitle>
-                <CardDescription>{t('home.learningPaths.paths.devops.description')}</CardDescription>
+                <CardTitle className="text-xl mb-2">
+                  {t("home.learningPaths.paths.devops.title")}
+                </CardTitle>
+                <CardDescription>
+                  {t("home.learningPaths.paths.devops.description")}
+                </CardDescription>
                 <Button variant="ghost" size="sm" className="mt-4">
-                  {t('home.learningPaths.explorePath')}
+                  {t("home.learningPaths.explorePath")}
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Card>
@@ -143,10 +159,14 @@ export default function HomePage() {
                 <div className="rounded-full bg-primary/10 p-3 mb-4">
                   <BarChart3 className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl mb-2">{t('home.learningPaths.paths.dataScience.title')}</CardTitle>
-                <CardDescription>{t('home.learningPaths.paths.dataScience.description')}</CardDescription>
+                <CardTitle className="text-xl mb-2">
+                  {t("home.learningPaths.paths.dataScience.title")}
+                </CardTitle>
+                <CardDescription>
+                  {t("home.learningPaths.paths.dataScience.description")}
+                </CardDescription>
                 <Button variant="ghost" size="sm" className="mt-4">
-                  {t('home.learningPaths.explorePath')}
+                  {t("home.learningPaths.explorePath")}
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Card>
@@ -155,10 +175,14 @@ export default function HomePage() {
                 <div className="rounded-full bg-primary/10 p-3 mb-4">
                   <Code2 className="h-6 w-6 text-primary" />
                 </div>
-                <CardTitle className="text-xl mb-2">{t('home.learningPaths.paths.mobileDev.title')}</CardTitle>
-                <CardDescription>{t('home.learningPaths.paths.mobileDev.description')}</CardDescription>
+                <CardTitle className="text-xl mb-2">
+                  {t("home.learningPaths.paths.mobileDev.title")}
+                </CardTitle>
+                <CardDescription>
+                  {t("home.learningPaths.paths.mobileDev.description")}
+                </CardDescription>
                 <Button variant="ghost" size="sm" className="mt-4">
-                  {t('home.learningPaths.explorePath')}
+                  {t("home.learningPaths.explorePath")}
                   <ChevronRight className="h-4 w-4 ml-1" />
                 </Button>
               </Card>
@@ -172,25 +196,25 @@ export default function HomePage() {
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                  {t('home.featuredCourses.title')}
+                  {t("home.featuredCourses.title")}
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  {t('home.featuredCourses.subtitle')}
+                  {t("home.featuredCourses.subtitle")}
                 </p>
               </div>
             </div>
 
             <Tabs defaultValue="all" className="mt-8">
-              <div className="flex justify-center">
-                <TabsList className="mb-8">
-                  <TabsTrigger value="all">{t('home.featuredCourses.tabs.all')}</TabsTrigger>
-                  <TabsTrigger value="fullstack">{t('home.featuredCourses.tabs.fullstack')}</TabsTrigger>
-                  <TabsTrigger value="backend">{t('home.featuredCourses.tabs.backend')}</TabsTrigger>
-                  <TabsTrigger value="frontend">{t('home.featuredCourses.tabs.frontend')}</TabsTrigger>
-                  <TabsTrigger value="devops">{t('home.featuredCourses.tabs.devops')}</TabsTrigger>
-                  <TabsTrigger value="datascience">{t('home.featuredCourses.tabs.datascience')}</TabsTrigger>
-                </TabsList>
-              </div>
+              {/* <div className="flex justify-center"> */}
+              {/*   <TabsList className="mb-8"> */}
+              {/*     <TabsTrigger value="all">{t('home.featuredCourses.tabs.all')}</TabsTrigger> */}
+              {/*     <TabsTrigger value="fullstack">{t('home.featuredCourses.tabs.fullstack')}</TabsTrigger> */}
+              {/*     <TabsTrigger value="backend">{t('home.featuredCourses.tabs.backend')}</TabsTrigger> */}
+              {/*     <TabsTrigger value="frontend">{t('home.featuredCourses.tabs.frontend')}</TabsTrigger> */}
+              {/*     <TabsTrigger value="devops">{t('home.featuredCourses.tabs.devops')}</TabsTrigger> */}
+              {/*     <TabsTrigger value="datascience">{t('home.featuredCourses.tabs.datascience')}</TabsTrigger> */}
+              {/*   </TabsList> */}
+              {/* </div> */}
 
               <TabsContent value="all" className="space-y-4">
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

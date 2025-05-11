@@ -96,9 +96,9 @@ export function ProfilePage({ user }: { user?: User }) {
           <div>
             {user?.education.map((el) => (
               <div key={el.id} className="m-2 mt-3">
-                <div className="flex justify-between">
+                <div className="flex flex-col-reverse sm:flex-row justify-between">
                   <h2 className="font-semibold">{el.organization}</h2>
-                  <span className="text-gray-600">
+                  <span className="text-gray-600 text-center">
                     {MONTHS[new Date(el.startPeriod).getMonth()]}&nbsp;
                     {new Date(el.startPeriod).getFullYear()} -&nbsp;
                     {MONTHS[new Date(el.endPeriod).getMonth()]}&nbsp;
@@ -117,9 +117,9 @@ export function ProfilePage({ user }: { user?: User }) {
           <div>
             {user?.experience.map((el) => (
               <div key={el.id} className="m-2 mt-3">
-                <div className="flex justify-between">
+                <div className="flex flex-col-reverse sm:flex-row justify-between">
                   <h2 className="font-semibold">{el.organization}</h2>
-                  <span className="text-gray-600">
+                  <span className="text-gray-600 text-center">
                     {MONTHS[new Date(el.startPeriod).getMonth()]}&nbsp;
                     {new Date(el.startPeriod).getFullYear()} -&nbsp;
                     {MONTHS[new Date(el.endPeriod).getMonth()]}&nbsp;
