@@ -1,3 +1,4 @@
+'use client'
 import {
     Sidebar,
     SidebarContent,
@@ -11,6 +12,8 @@ import {
   } from "@/components/ui/sidebar"
 import { Calendar, Code, Home, NotebookPen, Search, Settings } from "lucide-react"
 import Link from "next/link"
+import { useEffect } from "react";
+import { useUser } from "../providers/userContext";
   
 
   const items = [
@@ -18,30 +21,59 @@ import Link from "next/link"
       title: "Home",
       url: "/dashboard",
       icon: Home,
+      role:["USER", "INSTRUCTOR", "ADMIN"]
     },
     {
       title: "My Blogs",
       url: "/dashboard/blogs",
       icon: NotebookPen,
+      role:["USER", "INSTRUCTOR", "ADMIN"]
     },
     {
       title: "Calendar",
       url: "#",
       icon: Calendar,
+      role:["USER", "INSTRUCTOR", "ADMIN"]
     },
     {
       title: "Search",
       url: "#",
       icon: Search,
+      role:["USER", "INSTRUCTOR", "ADMIN"]
     },
     {
       title: "Settings",
       url: "#",
       icon: Settings,
+      role:["USER", "INSTRUCTOR", "ADMIN"]
+    },
+    {
+      title: "Instructor+Admin item",
+      url: "#",
+      icon: Settings,
+      role:["INSTRUCTOR", "ADMIN"]
+    },
+    {
+      title: "Instructor item",
+      url: "#",
+      icon: Settings,
+      role:["INSTRUCTOR"]
+    },
+    {
+      title: "Admin item",
+      url: "#",
+      icon: Settings,
+      role:["ADMIN"]
     },
   ]
   
   export function AppSidebar() {
+      const {user, fetchUserInfo} = useUser();
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, [fetchUserInfo]);
+  
     return (
       <Sidebar>
         <SidebarHeader>
@@ -55,7 +87,7 @@ import Link from "next/link"
             <SidebarGroupLabel>Application</SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
-                {items.map((item) => (
+                 {items.map((item) => item.role.includes(user?.role ?? "USER") ?
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton asChild>
                       <Link href={item.url}>
@@ -64,7 +96,7 @@ import Link from "next/link"
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                ))}
+               : undefined)}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>
