@@ -25,7 +25,7 @@ export default function RootLayout({
 }: RootLayoutProps) {
   return (
     <html lang={lng}>
-      <body className={`antialiased w-screen`}>
+      <body className="antialiased w-screen">
         <Providers>
           <UserProvider>
             <I18nProvider>
