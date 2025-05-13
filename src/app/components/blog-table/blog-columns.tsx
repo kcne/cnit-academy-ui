@@ -1,7 +1,8 @@
-import { ColumnDef } from "@tanstack/react-table"
-import { BlogPost } from "@/api/types/blog"
-import { Button } from "@/components/ui/button"
-import { ArrowUpDown, Pencil, Trash2, Eye, EyeOff } from "lucide-react"
+import { ColumnDef } from "@tanstack/react-table";
+import { BlogPost } from "@/api/types/blog";
+import { Button } from "@/components/ui/button";
+import { ArrowUpDown, Pencil, Trash2, Eye, EyeOff } from "lucide-react";
+import Link from "next/link";
 
 export const blogColumns: ColumnDef<BlogPost>[] = [
   {
@@ -19,7 +20,7 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
           Title
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
   },
   {
@@ -37,10 +38,10 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
           Status
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      return row.original.published ? "Published" : "Draft"
+      return row.original.published ? "Published" : "Draft";
     },
   },
   {
@@ -54,22 +55,24 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
           Created At
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
-      )
+      );
     },
     cell: ({ row }) => {
-      return new Date(row.original.createdAt).toLocaleDateString()
+      return new Date(row.original.createdAt).toLocaleDateString();
     },
   },
   {
     id: "actions",
     cell: ({ row }) => {
-      const blog = row.original
+      const blog = row.original;
 
       return (
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon">
-            <Pencil className="h-4 w-4" />
-          </Button>
+          <Link href={`/dashboard/blogs/edit/${blog.id}`}>
+              <Button variant="ghost" size="icon">
+                <Pencil className="h-4 w-4" />
+              </Button>
+          </Link>
           <Button variant="ghost" size="icon">
             <Trash2 className="h-4 w-4" />
           </Button>
@@ -83,7 +86,7 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
             </Button>
           )}
         </div>
-      )
+      );
     },
   },
-]
+];
