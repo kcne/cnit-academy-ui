@@ -78,7 +78,7 @@ export function BlogForm({
               <FormItem>
                 <FormLabel>Slug</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter blog slug" {...field} />
+                  <Input placeholder="Enter blog slug" disabled {...field} />
                 </FormControl>
                 <FormDescription>
                   This will be used in the URL. Use hyphens instead of spaces.
