@@ -2,6 +2,7 @@ import { ColumnDef } from "@tanstack/react-table"
 import { BlogPost } from "@/api/types/blog"
 import { Button } from "@/components/ui/button"
 import { ArrowUpDown, Pencil, Trash2, Eye, EyeOff } from "lucide-react"
+import { useUserBlogs } from "@/api/hooks/useUserBlogs"
 
 export const blogColumns: ColumnDef<BlogPost>[] = [
   {
@@ -64,22 +65,24 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
     id: "actions",
     cell: ({ row }) => {
       const blog = row.original
+      const {publishBlog, deleteBlog} = useUserBlogs(row.original.userId);
+      // TODO: mutations and edit blog page
 
       return (
         <div className="flex items-center gap-2">
           <Button variant="ghost" size="icon">
             <Pencil className="h-4 w-4" />
           </Button>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" onClick={() => deleteBlog.mutate(row.original.id)}>
             <Trash2 className="h-4 w-4" />
           </Button>
           {blog.published ? (
-            <Button variant="ghost" size="icon">
-              <EyeOff className="h-4 w-4" />
+            <Button variant="ghost" size="icon" disabled>
+              <Eye className="h-4 w-4" />
             </Button>
           ) : (
-            <Button variant="ghost" size="icon">
-              <Eye className="h-4 w-4" />
+            <Button variant="ghost" size="icon" onClick={() => publishBlog.mutate(row.original.id)}>
+              <EyeOff className="h-4 w-4" />
             </Button>
           )}
         </div>

@@ -24,8 +24,8 @@ export type User =
         title: string;
         icon: string;
       }[];
-      education: any[];
-      experience: any[];
+      education: object[];
+      experience: object[];
     }
   | undefined;
 

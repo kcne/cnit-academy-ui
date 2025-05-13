@@ -11,16 +11,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { formatDistanceToNow } from "date-fns";
-
-export interface Course {
-  id: number;
-  title: string;
-  description?: string;
-  durationInHours?: number;
-  createdAt: string;
-  coins: number;
-  lectures: object[];
-}
+import { Course } from "@/api/types/course";
 
 interface CourseCardProps {
   course: Course;
@@ -41,6 +32,7 @@ export const CourseCard: FC<CourseCardProps> = ({
     createdAt,
     coins,
     lectures,
+    createdBy,
   } = course;
 
   const timeAgo = formatDistanceToNow(new Date(createdAt), { addSuffix: true });
@@ -60,7 +52,9 @@ export const CourseCard: FC<CourseCardProps> = ({
             {coins}
           </Badge>
         </div>
-        <p>Instructor: Emin Kocan (izmeniti)</p> {/*Izmeniti ovo*/}
+        <p>
+          Instructor: {createdBy.firstName} {createdBy.lastName}
+        </p>{" "}
         <CardDescription className="text-xs text-muted-foreground">
           Created {timeAgo}
         </CardDescription>
