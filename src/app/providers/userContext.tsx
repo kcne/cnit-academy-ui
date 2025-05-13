@@ -24,10 +24,19 @@ export type User =
         title: string;
         icon: string;
       }[];
-      education: object[];
-      experience: object[];
+      education: EducationExperience[];
+      experience: EducationExperience[];
     }
   | undefined;
+
+export type EducationExperience = {
+  id: number;
+  title: number;
+  description: string;
+  organization: string;
+  startPeriod: Date;
+  endPeriod?: Date;
+};
 
 type UserContextType = {
   user: User;

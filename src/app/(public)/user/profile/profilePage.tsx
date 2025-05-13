@@ -99,10 +99,18 @@ export function ProfilePage({ user }: { user?: User }) {
                 <div className="flex flex-col-reverse sm:flex-row justify-between">
                   <h2 className="font-semibold">{el.organization}</h2>
                   <span className="text-gray-600 text-center">
-                    {MONTHS[new Date(el.startPeriod).getMonth()]}&nbsp;
-                    {new Date(el.startPeriod).getFullYear()} -&nbsp;
-                    {MONTHS[new Date(el.endPeriod).getMonth()]}&nbsp;
-                    {new Date(el.endPeriod).getFullYear()}
+                    <span>
+                      {MONTHS[new Date(el.startPeriod).getMonth()]}&nbsp;
+                      {new Date(el.startPeriod).getFullYear()} -&nbsp;
+                    </span>
+                    {el.endPeriod ? (
+                      <span>
+                        {MONTHS[new Date(el.endPeriod).getMonth()]}&nbsp;
+                        {new Date(el.endPeriod).getFullYear()}{" "}
+                      </span>
+                    ) : (
+                      <span className="font-semibold text-black">Now</span>
+                    )}
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 -mt-0.5 mb-1">{el.title}</p>
@@ -120,10 +128,18 @@ export function ProfilePage({ user }: { user?: User }) {
                 <div className="flex flex-col-reverse sm:flex-row justify-between">
                   <h2 className="font-semibold">{el.organization}</h2>
                   <span className="text-gray-600 text-center">
-                    {MONTHS[new Date(el.startPeriod).getMonth()]}&nbsp;
-                    {new Date(el.startPeriod).getFullYear()} -&nbsp;
-                    {MONTHS[new Date(el.endPeriod).getMonth()]}&nbsp;
-                    {new Date(el.endPeriod).getFullYear()}
+                    <span>
+                      {MONTHS[new Date(el.startPeriod).getMonth()]}&nbsp;
+                      {new Date(el.startPeriod).getFullYear()} -&nbsp;
+                    </span>
+                    {el.endPeriod ? (
+                      <span>
+                        {MONTHS[new Date(el.endPeriod).getMonth()]}&nbsp;
+                        {new Date(el.endPeriod).getFullYear()}{" "}
+                      </span>
+                    ) : (
+                      <span className="font-semibold text-black">Now</span>
+                    )}
                   </span>
                 </div>
                 <p className="text-sm text-gray-600 -mt-0.5 mb-1">{el.title}</p>

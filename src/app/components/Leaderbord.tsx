@@ -16,9 +16,8 @@ interface LeaderboardProps {
 }
 
 const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
-  const sortedUsers = [...users].sort((a, b) => b.totalCoins - a.totalCoins);
-  const topThree = sortedUsers.slice(0, 3);
-  const restUsers = sortedUsers.slice(3, 20);
+  const topThree = users.slice(0, 3);
+  const restUsers = users.slice(3, 20);
 
   const colors = [
     "#FF5733",
@@ -67,8 +66,8 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
                 index === 0
                   ? "bg-pink-500"
                   : index === 1
-                  ? "bg-gray-400"
-                  : "bg-blue-700"
+                    ? "bg-gray-400"
+                    : "bg-blue-700"
               }`}
             >
               {user.firstName.at(0)} {user.lastName.at(0)}
@@ -79,8 +78,8 @@ const Leaderboard: React.FC<LeaderboardProps> = ({ users }) => {
                 index === 0
                   ? "bg-yellow-500"
                   : index === 1
-                  ? "bg-gray-300"
-                  : "bg-orange-700"
+                    ? "bg-gray-300"
+                    : "bg-orange-700"
               }`}
             >
               {index + 1}
