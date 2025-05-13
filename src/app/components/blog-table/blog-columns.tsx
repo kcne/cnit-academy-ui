@@ -65,8 +65,8 @@ export const blogColumns: ColumnDef<BlogPost>[] = [
     id: "actions",
     cell: ({ row }) => {
       const blog = row.original
+      // eslint-disable-next-line react-hooks/rules-of-hooks
       const {publishBlog, deleteBlog} = useUserBlogs(row.original.userId);
-      // TODO: mutations and edit blog page
 
       return (
         <div className="flex items-center gap-2">

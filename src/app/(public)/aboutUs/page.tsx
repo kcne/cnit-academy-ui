@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FaRocket, FaHandshake, FaLightbulb } from "react-icons/fa";
-// import Image from "next/image";
+import Image from "next/image";
 
 const team = [
   {
@@ -110,7 +110,7 @@ const AboutPage = () => {
               transition={{ delay: index * 0.2, duration: 0.5 }}
               viewport={{ once: true }}
             >
-              <img
+              <Image
                 src={member.image}
                 alt={member.name}
                 width={200}
