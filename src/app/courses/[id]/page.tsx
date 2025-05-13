@@ -8,7 +8,7 @@ import Link from "next/link";
 import { BASE_URL } from "@/app/providers/userContext";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@radix-ui/react-accordion";
 
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default function Courses({ params: { id } }: any){
     const token = localStorage.getItem("authToken");
     const [data, setData] = useState<any>(null);
@@ -54,7 +54,7 @@ export default function Courses({ params: { id } }: any){
                                 <h1 className="font-medium text-black text-3xl flex">Lectures</h1>
                             </div>
                                     {data?.lectures.map((lecture:any) => (
-                                        <Accordion type="single" collapsible>
+                                        <Accordion type="single" collapsible key={lecture.id}>
                                             <AccordionItem value="1">
                                                 <div className="pt-3 flex flex-col">
                                                         <AccordionTrigger className="flex justify-start">
