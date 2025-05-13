@@ -47,24 +47,6 @@ import { useUser } from "../providers/userContext";
       icon: Settings,
       role:["USER", "INSTRUCTOR", "ADMIN"]
     },
-    {
-      title: "Instructor+Admin item",
-      url: "#",
-      icon: Settings,
-      role:["INSTRUCTOR", "ADMIN"]
-    },
-    {
-      title: "Instructor item",
-      url: "#",
-      icon: Settings,
-      role:["INSTRUCTOR"]
-    },
-    {
-      title: "Admin item",
-      url: "#",
-      icon: Settings,
-      role:["ADMIN"]
-    },
   ]
   
   export function AppSidebar() {
