@@ -5,7 +5,7 @@ import { BlogForm } from "../components/blog-form"
 import { api } from "@/api/api"
 import { useUser } from "@/app/providers/userContext"
 import React from "react"
-import { BlogFormValues } from "@/app/dashboard/blog/schema"
+import { BlogFormValues } from "@/app/(public)/dashboard/blog/schema"
 
 export default function NewBlogPage() {
   const router = useRouter()
@@ -15,7 +15,7 @@ export default function NewBlogPage() {
   const onSubmit = async (values: BlogFormValues) => {
     try {
       setIsLoading(true)
-      await api.post("/api/blog", {
+      await api.post("/api/blog/admin", {
         ...values,
         userId: user?.id,
       })

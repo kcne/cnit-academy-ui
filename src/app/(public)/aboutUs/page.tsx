@@ -1,58 +1,73 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
-import { FaRocket, FaHandshake, FaLightbulb } from 'react-icons/fa';
+import { motion } from "framer-motion";
+import { FaRocket, FaHandshake, FaLightbulb } from "react-icons/fa";
 import Image from "next/image";
 
 const team = [
   {
-    name: 'Mark Peterson',
-    title: 'SEO Specialist',
-    image: 'https://randomuser.me/api/portraits/men/32.jpg',
-    description: 'Helps businesses rank higher on Google using modern SEO techniques.',
+    name: "Mark Peterson",
+    title: "SEO Specialist",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    description:
+      "Helps businesses rank higher on Google using modern SEO techniques.",
   },
   {
-    name: 'Jessica Lee',
-    title: 'UI/UX Designer',
-    image: 'https://randomuser.me/api/portraits/women/44.jpg',
-    description: 'Designs clean and user-friendly interfaces using Figma and Tailwind CSS.',
+    name: "Jessica Lee",
+    title: "UI/UX Designer",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    description:
+      "Designs clean and user-friendly interfaces using Figma and Tailwind CSS.",
   },
   {
-    name: 'Nicholas Johnson',
-    title: 'Digital Strategist',
-    image: 'https://randomuser.me/api/portraits/men/65.jpg',
-    description: 'Builds data-driven growth strategies for web products using Next.js.',
+    name: "Nicholas Johnson",
+    title: "Digital Strategist",
+    image: "https://randomuser.me/api/portraits/men/65.jpg",
+    description:
+      "Builds data-driven growth strategies for web products using Next.js.",
   },
 ];
 
 const values = [
   {
-    icon: <FaRocket className="text-indigo-600 text-3xl mb-2" />,
-    title: 'Innovation',
-    desc: 'We constantly explore new tools and Next.js features to stay ahead.',
+    icon: (
+      <div className="w-full flex justify-center md:justify-start">
+        <FaRocket className="text-gray-800 text-3xl mb-2" />
+      </div>
+    ),
+    title: "Innovation",
+    desc: "We constantly explore new tools and Next.js features to stay ahead.",
   },
   {
-    icon: <FaHandshake className="text-indigo-600 text-3xl mb-2" />,
-    title: 'Trust',
-    desc: 'We build long-term relationships through transparent collaboration.',
+    icon: (
+      <div className="w-full flex justify-center md:justify-start">
+        <FaHandshake className="text-gray-800 text-3xl mb-2" />
+      </div>
+    ),
+    title: "Trust",
+    desc: "We build long-term relationships through transparent collaboration.",
   },
   {
-    icon: <FaLightbulb className="text-indigo-600 text-3xl mb-2" />,
-    title: 'Creativity',
-    desc: 'Every project is approached with fresh ideas and custom solutions.',
+    icon: (
+      <div className="w-full flex justify-center md:justify-start">
+        <FaLightbulb className="text-gray-800 text-3xl mb-2" />
+      </div>
+    ),
+    title: "Creativity",
+    desc: "Every project is approached with fresh ideas and custom solutions.",
   },
 ];
 
 const testimonials = [
   {
-    name: 'Anna M.',
+    name: "Anna M.",
     feedback:
-      'Thanks to their Next.js expertise, my website loads twice as fast and ranks higher!',
+      "Thanks to their Next.js expertise, my website loads twice as fast and ranks higher!",
   },
   {
-    name: 'Ryan T.',
+    name: "Ryan T.",
     feedback:
-      'Amazing team! Our web app was built quickly, cleanly, and with a clear SEO structure.',
+      "Amazing team! Our web app was built quickly, cleanly, and with a clear SEO structure.",
   },
 ];
 
@@ -80,7 +95,7 @@ const AboutPage = () => {
 
         <a
           href="/contact"
-          className="inline-block bg-indigo-600 text-white py-2 px-6 rounded-full hover:bg-indigo-700 transition mb-16"
+          className="inline-block bg-gray-800 text-white py-2 px-6 rounded-full hover:bg-gray-700 transition mb-16"
         >
           Contact Us
         </a>
@@ -102,8 +117,10 @@ const AboutPage = () => {
                 height={200}
                 className="w-24 h-24 mx-auto rounded-full object-cover mb-4"
               />
-              <h3 className="text-xl font-semibold text-gray-800">{member.name}</h3>
-              <p className="text-sm text-indigo-600 mb-2">{member.title}</p>
+              <h3 className="text-xl font-semibold text-gray-800">
+                {member.name}
+              </h3>
+              <p className="text-sm text-gray-800 mb-2">{member.title}</p>
               <p className="text-gray-600 text-sm">{member.description}</p>
             </motion.div>
           ))}
@@ -129,8 +146,10 @@ const AboutPage = () => {
           </div>
         </div>
 
-        <div className="bg-indigo-50 rounded-xl py-10 px-6">
-          <h2 className="text-3xl font-bold mb-6 text-indigo-800">What Our Clients Say</h2>
+        <div className="bg-gray-100 rounded-xl py-10 px-6">
+          <h2 className="text-3xl font-bold mb-6 text-gray-800">
+            What Our Clients Say
+          </h2>
           <div className="grid md:grid-cols-2 gap-6">
             {testimonials.map((item, i) => (
               <motion.div
@@ -141,8 +160,12 @@ const AboutPage = () => {
                 transition={{ delay: i * 0.3 }}
                 viewport={{ once: true }}
               >
-                <p className="text-gray-700 italic">&quot;{item.feedback}&quot;</p>
-                <p className="mt-4 font-semibold text-gray-900">— {item.name}</p>
+                <p className="text-gray-700 italic">
+                  &quot;{item.feedback}&quot;
+                </p>
+                <p className="mt-4 font-semibold text-gray-900">
+                  — {item.name}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -153,5 +176,3 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
-
-

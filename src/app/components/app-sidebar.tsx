@@ -9,7 +9,7 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
   } from "@/components/ui/sidebar"
-import { Calendar, Code, Home, NotebookPen, Search, Settings } from "lucide-react"
+import { Book, Calendar, Code, Home, NotebookPen, Search, Settings } from "lucide-react"
 import Link from "next/link"
   
 
@@ -23,6 +23,11 @@ import Link from "next/link"
       title: "My Blogs",
       url: "/dashboard/blogs",
       icon: NotebookPen,
+    },
+    {
+      title: "My Courses",
+      url: "/dashboard/courses",
+      icon: Book,
     },
     {
       title: "Calendar",

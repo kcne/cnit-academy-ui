@@ -8,8 +8,7 @@ import React, {
   ReactNode,
 } from "react";
 import axios from "axios";
-
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import { BASE_URL } from "./envConstants";
 
 export type User =
   | {
@@ -17,8 +16,27 @@ export type User =
       firstName: string;
       lastName: string;
       email: string;
+      skills: string[];
+      pfp: string;
+      totalCoins: number;
+      streak: number;
+      badges: {
+        title: string;
+        icon: string;
+      }[];
+      education: EducationExperience[];
+      experience: EducationExperience[];
     }
   | undefined;
+
+export type EducationExperience = {
+  id: number;
+  title: number;
+  description: string;
+  organization: string;
+  startPeriod: Date;
+  endPeriod?: Date;
+};
 
 type UserContextType = {
   user: User;

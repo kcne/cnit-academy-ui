@@ -1,9 +1,9 @@
 "use client";
-import { useCourses } from "@/api/hooks/useCourses";
 import { CourseCard } from "./components/CourseCard";
+import { useUserCourses } from "@/api/hooks/useUserCourses";
 
 export default function Home() {
-  const { data: courses } = useCourses();
+  const { data: courses } = useUserCourses();
 
   return (
     <>
