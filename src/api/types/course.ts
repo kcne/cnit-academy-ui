@@ -17,4 +17,10 @@ export interface Course {
   createdAt: string;
   coins: number;
   lectures: Lecture[];
+  createdBy: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
 }
